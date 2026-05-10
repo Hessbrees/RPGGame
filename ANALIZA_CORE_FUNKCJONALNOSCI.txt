@@ -1,0 +1,880 @@
+================================================================================
+ANALIZA CORE FUNKCJONALNOŚCI RPG GAME - Mistrz Gry, RAG-i, Rozmowa Graczy
+================================================================================
+Data: 30.04.2026
+
+================================================================================
+✅ CO DZIAŁA POPRAWNIE (CORE)
+================================================================================
+
+1. RAG-i - Wszystkie działają ✅
+   - LoreRAG ✅ - zwraca poprawne informacje o świecie
+   - JudgeRAG ✅ - zwraca zasady walki i mechaniki
+   - NpcRAG ✅ - zwraca informacje o frakcjach/postaciach
+   - ChronicleRAG ✅ - zapisuje i odczytuje historię rozgrywki
+     * add_entry() działa
+     * compress_journal() działa
+     * Zapis do journal.json funkcjonuje
+
+2. GameMasterAgent - Narracja działa ✅
+   - narrate() - generuje opisy sytuacji ✅
+   - react_to_player_action() - reaguje na akcje graczy ✅
+   - play_npc() - odgrywa postacie NPC ✅
+   - AI Possibility Bias - prompty "bezlitosnego GM" są zaimplementowane ✅
+   - Vibe rozgrywki - style (chaotyczna/trudna/spokojna/zrównoważona) działają ✅
+
+3. GameOrchestrator - Routing ✅
+   - Auto-detection kontekstu (_detect_context()) działa ✅
+   - Kierowanie zapytań do odpowiedniego RAG-a ✅
+   - process_player_action() - przetwarza akcje i rejestruje w kronice ✅
+   - Walidacja przez JudgeRAG działa ✅
+
+4. GameState ✅
+   - Zarządzanie turami (next_turn()) ✅
+   - Dynamiczne dostosowywanie trudności (adjust_difficulty()) ✅
+   - Dodawanie/usuwanie NPC (add_npc(), remove_npc()) ✅
+   - Ukrywanie informacji (hidden_info) ✅
+   - Profile vibe rozgrywki ✅
+
+================================================================================
+❌ CO NIE DZIAŁA / CZEGO BRAKUJE (CORE)
+================================================================================
+
+1. PlayerAgent NIE JEST UŻYWANY ❌❌❌
+   KRYTYCZNY PROBLEM!
+   
+   Według dokumentu:
+   "Gracz: Wprowadza dodatkowy element do rozgrywki, który ma realny wpływ 
+   na przebieg historii i jej kierunek"
+   
+   Aktualny stan:
+   - PlayerAgent jest zaimplementowany w kodzie
+   - ALE main.py NIE TWORZY żadnego gracza AI
+   - Gracz to człowiek wpisujący komendy w CLI
+   - Brak AI jako gracz = brak podstawowej funkcjonalności zgodnej z dokumentem
+   
+   Co mówi dokument (LLM jako Gracz):
+   - Interpretacja persony – wcielanie się w rolę
+   - Analiza sytuacji – reakcja na daną sytuację
+   - Narracja działań – opisywanie jak wykonuję akcje
+   - Interakcja Społeczna – rozmowa z innymi uczestnikami
+   
+   To wszystko istnieje w PlayerAgent, ale NIE JEST UŻYWANE.
+
+2. ROZMOWA MIĘDZY GRACZAMI NIE DZIAŁA ❌❌❌
+   KRYTYCZNY PROBLEM!
+   
+   Dokument opisuje:
+   
+   Rozmowa swobodna:
+   "Gracze rozmawiają ze sobą. MCP gra rolę tutaj pośrednika w rozmowie. 
+   Każda odpowiedź przesyłana jest do MCP, a on przekazuje ją innym graczom 
+   i mistrzowi gry. Mistrz gry decyduje kiedy zakończyć rozmowę."
+   
+   Rozmowa turowa:
+   "Mistrz gry rozpoczyna rozmowę do danego gracza. Może to być rozmowa NPC, 
+   sprawdzenie, lub walka."
+   
+   Aktualny stan:
+   - ConversationMode.FREE i ConversationMode.TURN_BASED są zdefiniowane 
+     ❌ ALE NIEUŻYWANE
+   - Brak mechanizmu przełączania między trybami ❌
+   - Brak logiki "rozmowy swobodnej" gdzie gracze AI rozmawiają ze sobą ❌
+   - Brak decyzji GM kiedy zakończyć rozmowę ❌
+   - Orchestrator NIE PEŁNI roli "wspólnej szyny komunikacyjnej" ❌
+
+3. WIELOOSOBOWA ROZGRYWKA NIE DZIAŁA ❌❌
+   KRYTYCZNY PROBLEM!
+   
+   Dokument wspomina:
+   "Inicjalizacja rozgrywki: Użytkownik wybiera z menu scenariusz, vibe 
+   rozgrywki, liczbę graczy."
+   
+   "Dynamiczne dostosowywanie poziomu trudności do umiejętności każdego z graczy."
+   
+   Aktualny stan:
+   - GameState.players lista istnieje, ale jest pusta i nieużywana ❌
+   - main.py obsługuje tylko JEDNEGO człowieka wpisującego komendy ❌
+   - Brak mechanizmu obsługi wielu graczy AI jednocześnie ❌
+   - Brak zarządzania turami między graczami ❌
+   - Brak "wspólnej szyny komunikacyjnej" ❌
+
+4. PRZEPŁYW ROZGRYWKI JEST NIEPEŁNY ⚠️
+   
+   Dokument opisuje:
+   1. Inicjalizacja → wybór scenariusza, vibe, liczby graczy
+   2. Rozpoczęcie opowieści → GM wprowadza w świat
+   3. Opisywanie sytuacji → GM opisuje co się dzieje
+   4. Rozmowa swobodna/turowa → gracze rozmawiają/działają
+   5. GM reaguje i zmienia stan gry
+   
+   Aktualny stan:
+   ✅ Krok 2-3: GM może opisywać sytuację
+   ❌ Krok 1: Brak menu wyboru (vibe jest hard-coded)
+   ❌ Krok 4: Rozmowy nie działają (brak AI graczy)
+   ⚠️ Krok 5: GM reaguje, ale nie zmienia automatycznie stanu (HP, ekwipunek)
+
+5. ZARZĄDZANIE AKCJAMI GRACZA NIEKOMPLETNE ⚠️
+   
+   Dokument wymaga:
+   "Realizacja i ewidencja decyzji: zarządzanie ekwipunkiem, wykonywanie akcji, 
+   aktualizowanie danych postaci"
+   
+   Aktualny stan:
+   - PlayerState ma hp, inventory ❌ ALE NIE SĄ AKTUALIZOWANE
+   - process_player_action() zapisuje w kronice ✅
+   - Walidacja przez JudgeRAG ✅
+   - ALE brak rzeczywistej zmiany stanu postaci (HP, ekwipunek) ❌
+   - Brak walidacji zasobów ("czy gracz ma przedmiot") ❌
+
+6. WSPÓLNA SZYNA KOMUNIKACYJNA NIE ISTNIEJE ❌
+   
+   Dokument:
+   "Wspólna szyna komunikacyjna: Informowanie graczy o wykonywanych akcjach 
+   w rozgrywce"
+   
+   Aktualny stan:
+   - Brak mechanizmu broadcastu akcji do wszystkich graczy ❌
+   - Każdy gracz (gdyby był) działa w izolacji ❌
+   - Brak mechanizmu "Gracz A zrobił X → wszyscy inni gracze wiedzą" ❌
+
+7. GM NIE DECYDUJE O ZAKOŃCZENIU ROZMÓW ❌
+   
+   Dokument:
+   "Mistrz gry decyduje kiedy zakończyć rozmowę"
+   "Kontrolowanie dialogu – reagowanie na przedłużające się rozmowy 
+   i odchodzenie od tematu"
+   
+   Aktualny stan:
+   - Brak mechanizmu GM oceniającego czy rozmowa się przeciąga ❌
+   - Brak decyzji GM "teraz kończymy rozmowę, pora na akcję" ❌
+   - GM nie przełącza między trybami konwersacji ❌
+
+================================================================================
+📊 PODSUMOWANIE CORE FUNKCJONALNOŚCI
+================================================================================
+
+┌─────────────────────────┬──────────┬──────────────────────────────────────┐
+│ Komponent               │ Status   │ Uwagi                                │
+├─────────────────────────┼──────────┼──────────────────────────────────────┤
+│ RAG-i                   │ ✅ 100%  │ Wszystkie działają poprawnie         │
+│ GameMasterAgent         │ ✅ 90%   │ Działa, brak tylko kontroli rozmów   │
+│ PlayerAgent             │ ❌ 0%    │ Istnieje ale NIE JEST UŻYWANY        │
+│ Rozmowa graczy          │ ❌ 0%    │ Całkowicie brakuje                   │
+│ Wieloosobowa rozgrywka  │ ❌ 0%    │ Nie zaimplementowana                 │
+│ Orchestrator            │ ⚠️ 60%   │ Routing działa, brak szyny komun.    │
+│ GameState               │ ⚠️ 70%   │ Struktura OK, brak wykorzystania     │
+│ Zarządzanie akcjami     │ ⚠️ 40%   │ Walidacja OK, brak zmian stanu       │
+└─────────────────────────┴──────────┴──────────────────────────────────────┘
+
+================================================================================
+🎯 KLUCZOWY WNIOSEK
+================================================================================
+
+Gra DZIAŁA jako "człowiek rozmawia z AI Mistrzem Gry", ale NIE DZIAŁA jako:
+- AI gracz rozmawia z AI Mistrzem Gry ❌
+- Wielu graczy AI rozmawia ze sobą i z GM ❌
+- GM zarządza rozmowami i decyduje o przełączaniu trybów ❌
+
+Zgodnie z dokumentem, celem projektu jest:
+"Analiza porównawcza zdolności narracyjnych i decyzyjnych różnych modeli 
+językowych w symulowanym środowisku gier fabularnych"
+
+To sugeruje, że gracze też powinni być AI, żeby porównywać modele. 
+Aktualnie gracz to człowiek, więc nie można porównywać modeli w roli gracza.
+
+================================================================================
+🔧 PLAN IMPLEMENTACJI - PODEJŚCIE MODULARNE
+================================================================================
+
+ZAŁOŻENIA:
+- 2 graczy AI (bez inputu od człowieka)
+- 1 mistrz gry AI
+- Pełna automatyzacja rozgrywki AI vs AI vs GM
+
+================================================================================
+MODUŁ 1: GRACZE AI - INTEGRACJA PLAYERAGENT
+================================================================================
+PRIORYTET: KRYTYCZNY
+Status: ❌ DO ZROBIENIA
+
+Co trzeba zrobić:
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 1.1. Utworzenie graczy AI w GameOrchestrator                           │
+│      - Dodać listę self.players: list[PlayerAgent]                     │
+│      - Inicjalizować 2 graczy z różnymi personami                      │
+│      - Przypisać PlayerState do każdego gracza AI                      │
+│                                                                         │
+│ 1.2. Integracja z GameState                                            │
+│      - Połączyć PlayerAgent z PlayerState                              │
+│      - Synchronizować HP, inventory, persona                           │
+│                                                                         │
+│ 1.3. Główna pętla gry AI-only                                          │
+│      - Usunąć input() od człowieka z main.py                           │
+│      - Zastąpić logiką: GM → Gracz1 AI → Gracz2 AI → GM                │
+│      - Każdy gracz AI wywołuje decide_action() automatycznie           │
+│                                                                         │
+│ 1.4. Persony dla 2 graczy                                              │
+│      Gracz 1:                                                           │
+│      - name: "Arin"                                                     │
+│      - class: "złodziej"                                                │
+│      - traits: "przebiegły, skryty, nie ufa obcym"                     │
+│      - backstory: "Wychował się na ulicach wielkiego miasta"           │
+│                                                                         │
+│      Gracz 2:                                                           │
+│      - name: "Theron"                                                   │
+│      - class: "wojownik"                                                │
+│      - traits: "odważny, honorowy, lojalny"                            │
+│      - backstory: "Były żołnierz Zakonu Srebrnego Ostrza"              │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Pliki do modyfikacji:
+  - src/orchestrator/game_orchestrator.py  [GŁÓWNE ZMIANY]
+  - main.py                                 [USUNĄĆ INPUT, DODAĆ PĘTLĘ AI]
+  - src/game_state/game_state.py           [ROZSZERZYĆ PlayerState]
+
+================================================================================
+MODUŁ 2: WSPÓLNA SZYNA KOMUNIKACYJNA
+================================================================================
+PRIORYTET: KRYTYCZNY
+Status: ❌ DO ZROBIENIA
+
+Co trzeba zrobić:
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 2.1. Message Bus w Orchestratorze                                      │
+│      - Dodać self.message_history: list[dict]                          │
+│      - Każda akcja zapisywana jako:                                    │
+│        {                                                                │
+│          "turn": int,                                                   │
+│          "speaker": str,  # "GM" | "Arin" | "Theron"                   │
+│          "type": str,     # "narration" | "action" | "dialog"          │
+│          "content": str,                                                │
+│          "visible_to": list[str]  # ["all"] | ["Arin", "GM"]           │
+│        }                                                                │
+│                                                                         │
+│ 2.2. Broadcast do wszystkich uczestników                               │
+│      - broadcast_message(message: dict) → informuje wszystkich         │
+│      - get_visible_history(player_name: str) → zwraca to co widzi     │
+│                                                                         │
+│ 2.3. Gracze widzą akcje innych                                         │
+│      - Przed decide_action() gracz otrzymuje historię                  │
+│      - "Arin zrobił X, Theron zrobił Y, GM mówi Z"                     │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Pliki do modyfikacji:
+  - src/orchestrator/game_orchestrator.py  [DODAĆ MESSAGE BUS]
+
+================================================================================
+MODUŁ 3: TRYBY KONWERSACJI I ZARZĄDZANIE TURAMI
+================================================================================
+PRIORYTET: WYSOKI
+Status: ❌ DO ZROBIENIA
+
+Co trzeba zrobić:
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 3.1. Implementacja ConversationMode.FREE                               │
+│      - Gracze AI rozmawiają swobodnie (bez kolejności)                 │
+│      - GM analizuje czy rozmowa zmierza do celu                        │
+│      - GM decyduje kiedy zakończyć: should_end_free_conversation()     │
+│      - Limit tur: max 5 wymian swobodnych                              │
+│                                                                         │
+│ 3.2. Implementacja ConversationMode.TURN_BASED                         │
+│      - Sztywna kolejność: Gracz1 → Gracz2 → GM                         │
+│      - Używane podczas walki, sprawdzeń, dialogów z NPC                │
+│      - GM kontroluje przebieg                                          │
+│                                                                         │
+│ 3.3. Przełączanie trybów przez GM                                      │
+│      - GM.decide_conversation_mode(situation) → FREE | TURN_BASED      │
+│      - GM wykrywa: "walka" → TURN_BASED                                │
+│      - GM wykrywa: "eksploracja" → FREE                                │
+│                                                                         │
+│ 3.4. Zarządzanie turami                                                │
+│      - active_player_index: int                                        │
+│      - next_player() → przechodzi do następnego                        │
+│      - W FREE mode: gracze mogą mówić w dowolnej kolejności            │
+│      - W TURN_BASED: sztywna rotacja                                   │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Pliki do modyfikacji:
+  - src/orchestrator/game_orchestrator.py  [LOGIKA TRYBÓW]
+  - src/agents/game_master_agent.py        [DECIDE_CONVERSATION_MODE]
+  - src/game_state/game_state.py           [UŻYĆ ConversationMode]
+
+================================================================================
+MODUŁ 4: AKTUALIZACJA STANU POSTACI
+================================================================================
+PRIORYTET: ŚREDNI
+Status: ❌ DO ZROBIENIA
+
+Co trzeba zrobić:
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 4.1. Parsowanie akcji gracza przez GM                                  │
+│      - GM analizuje akcję: "Atakuję mieczem goblinа"                   │
+│      - GM wyciąga: typ_akcji="atak", cel="goblin", broń="miecz"        │
+│                                                                         │
+│ 4.2. Zmiana HP po akcjach                                              │
+│      - GM oblicza obrażenia (lub używa JudgeRAG)                       │
+│      - orchestrator.update_player_hp(player_name, delta)               │
+│      - Jeśli HP <= 0 → player.active = False                           │
+│                                                                         │
+│ 4.3. Zarządzanie ekwipunkiem                                           │
+│      - orchestrator.add_item(player_name, item)                        │
+│      - orchestrator.remove_item(player_name, item)                     │
+│      - orchestrator.has_item(player_name, item) → bool                 │
+│                                                                         │
+│ 4.4. Walidacja zasobów przed akcją                                     │
+│      - "Używam mikstury" → sprawdź has_item("mikstura")                │
+│      - Jeśli nie ma → GM odmawia akcji                                 │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Pliki do modyfikacji:
+  - src/orchestrator/game_orchestrator.py  [METODY UPDATE]
+  - src/agents/game_master_agent.py        [PARSOWANIE AKCJI]
+
+================================================================================
+MODUŁ 5: GM KONTROLUJE ROZMOWY
+================================================================================
+PRIORYTET: ŚREDNI
+Status: ❌ DO ZROBIENIA
+
+Co trzeba zrobić:
+┌─────────────────────────────────────────────────────────────────────────┐
+│ 5.1. Wykrywanie przeciągających się rozmów                             │
+│      - GM analizuje ostatnie N wiadomości                              │
+│      - Heurystyka: jeśli > 5 wymian bez akcji → interwencja            │
+│      - LLM decyduje: "Czy ta rozmowa zmierza do celu?"                 │
+│                                                                         │
+│ 5.2. Automatyczne zakończenie rozmowy                                  │
+│      - GM: "Dość gadania! Nagle słyszycie krzyk z lasu..."             │
+│      - Przełączenie na TURN_BASED lub nową scenę                       │
+│                                                                         │
+│ 5.3. Tempo rozgrywki                                                   │
+│      - GM śledzi: self.turns_without_action                            │
+│      - Jeśli za długo bez postępu → GM wymusza wydarzenie              │
+└─────────────────────────────────────────────────────────────────────────┘
+
+Pliki do modyfikacji:
+  - src/agents/game_master_agent.py        [KONTROLA ROZMÓW]
+  - src/orchestrator/game_orchestrator.py  [INTEGRACJA]
+
+================================================================================
+KOLEJNOŚĆ IMPLEMENTACJI (MODUŁOWA)
+================================================================================
+
+Krok 1: MODUŁ 1 - Gracze AI (1-2 dni)
+  ├─ Utworzenie 2 graczy AI z personami
+  ├─ Integracja z GameState
+  ├─ Pętla AI-only w main.py
+  └─ Test: Czy gracze AI podejmują decyzje?
+
+Krok 2: MODUŁ 2 - Message Bus (1 dzień)
+  ├─ Implementacja wspólnej szyny komunikacyjnej
+  ├─ Broadcast akcji do wszystkich
+  └─ Test: Czy wszyscy widzą co robią inni?
+
+Krok 3: MODUŁ 3 - Tryby konwersacji (2 dni)
+  ├─ FREE mode - swobodna rozmowa
+  ├─ TURN_BASED mode - turowa walka/dialog
+  ├─ Przełączanie przez GM
+  └─ Test: Czy GM przełącza tryby poprawnie?
+
+Krok 4: MODUŁ 4 - Stan postaci (1 dzień)
+  ├─ Aktualizacja HP
+  ├─ Zarządzanie ekwipunkiem
+  └─ Test: Czy HP się zmienia po walce?
+
+Krok 5: MODUŁ 5 - Kontrola rozmów (1 dzień)
+  ├─ Wykrywanie przeciągających się rozmów
+  ├─ Automatyczne zakończenie
+  └─ Test: Czy GM interweniuje gdy trzeba?
+
+CAŁKOWITY CZAS: ~6-7 dni roboczych
+
+================================================================================
+PRZYKŁADOWY PRZEBIEG GRY (2 GRACZY AI + GM)
+================================================================================
+
+Tura 0: INICJALIZACJA
+  GM: "Dwóch śmiałków stoi przed wejściem do Lasu Szeptów..."
+  [Mode: FREE]
+
+Tura 1: ROZMOWA SWOBODNA
+  Arin (AI): "Theron, co myślisz o tej misji?"
+  Theron (AI): "Musimy być ostrożni. Ten las ma złą reputację."
+  Arin (AI): "Zgadzam się. Pójdę przodem, sprawdzę czy jest bezpiecznie."
+  GM: [analizuje: rozmowa OK, kontynuuj]
+
+Tura 2: AKCJA
+  Arin (AI): "Zakradam się między drzewa i nasłuchuję."
+  GM: [sprawdza w JudgeRAG jak działa skradanie]
+  GM: "Rzuć k20 + zręczność. DC 15."
+  [Mode: TURN_BASED - sprawdzenie]
+
+Tura 3: REAKCJA GM
+  GM: "Arin, udaje ci się cicho przejść. Widzisz grupę goblinów."
+  [HP Arin: 100 → 100]
+  [Mode: FREE]
+
+Tura 4: DECYZJA GRACZY
+  Arin (AI): "Wracam do Therona. Szepczę: 'Gobliny, pięciu. Atakujemy?'"
+  Theron (AI): "Tak. Ja pójdę pierwszy, ty z tyłu."
+  GM: [wykrywa słowo "atakujemy" → przełącza na TURN_BASED]
+
+Tura 5-10: WALKA (TURN_BASED)
+  [Sztywna rotacja: Theron → Arin → Gobliny (GM) → repeat]
+  Theron: "Atakuję głównego goblina!"
+  GM: "Rzut 18 + 5 = 23. Trafienie! 1k8 dmg = 6."
+  [HP Goblin: 10 → 4]
+  Arin: "Atakuję z zaskoczenia sztybletem!"
+  ...
+
+Tura 11: ZAKOŃCZENIE WALKI
+  GM: "Ostatni goblin ucieka w popłochu."
+  [HP Theron: 85, HP Arin: 92]
+  [Mode: FREE]
+  GM: "Co teraz robicie?"
+
+================================================================================
+OCZEKIWANY EFEKT KOŃCOWY
+================================================================================
+
+✅ 2 graczy AI autonomicznie podejmuje decyzje
+✅ GM zarządza przygodą, przełącza tryby, kontroluje tempo
+✅ Wspólna szyna komunikacyjna - wszyscy widzą akcje innych
+✅ Rozmowa swobodna vs turowa działa automatycznie
+✅ Stan postaci (HP, ekwipunek) jest aktualizowany
+✅ Rozgrywka działa w pełni autonomicznie (AI vs AI vs GM)
+✅ Można porównywać różne modele LLM w roli graczy/GM
+
+BRAK INPUTU OD CZŁOWIEKA - gra toczy się sama!
+
+================================================================================
+PSEUDOKOD - NOWA PĘTLA GRY (main.py)
+================================================================================
+
+```python
+def main():
+    # Inicjalizacja
+    llm = Ollama(model="llama3", ...)
+    embed_model = OllamaEmbedding(...)
+    
+    # Utworzenie orchestratora z 2 graczami AI
+    orchestrator = GameOrchestrator(
+        llm=llm, 
+        embed_model=embed_model, 
+        vibe="zrównoważona",
+        num_players=2  # <--- NOWY PARAMETR
+    )
+    
+    # Orchestrator automatycznie tworzy:
+    # - PlayerAgent("Arin", "złodziej", ...)
+    # - PlayerAgent("Theron", "wojownik", ...)
+    
+    print("=== ROZGRYWKA AI vs AI ===")
+    print(f"Gracze: {[p.name for p in orchestrator.players]}")
+    print("Rozpoczynam przygodę...\n")
+    
+    # GM rozpoczyna opowieść
+    intro = orchestrator.start_adventure()
+    print(f"GM: {intro}\n")
+    
+    # GŁÓWNA PĘTLA - bez input() od człowieka!
+    max_turns = 20  # limit tur dla testów
+    
+    for turn in range(max_turns):
+        print(f"\n{'='*60}")
+        print(f"TURA {turn + 1}")
+        print('='*60)
+        
+        # Sprawdź czy gra się skończyła
+        if orchestrator.is_game_over():
+            print("\n=== KONIEC GRY ===")
+            print(orchestrator.get_ending())
+            break
+        
+        # GM decyduje o trybie konwersacji
+        mode = orchestrator.game_state.conversation_mode
+        print(f"[Tryb: {mode}]\n")
+        
+        if mode == ConversationMode.FREE:
+            # ROZMOWA SWOBODNA - gracze AI rozmawiają
+            orchestrator.run_free_conversation()
+            
+        elif mode == ConversationMode.TURN_BASED:
+            # ROZMOWA TUROWA - po kolei
+            orchestrator.run_turn_based_round()
+        
+        # GM analizuje czy zmienić tryb
+        orchestrator.game_master.evaluate_and_switch_mode()
+        
+        # Wyświetl aktualny stan
+        orchestrator.display_game_state()
+        
+        time.sleep(2)  # Krótka pauza dla czytelności
+    
+    print("\n=== KONIEC SYMULACJI ===")
+```
+
+================================================================================
+PSEUDOKOD - ORCHESTRATOR Z 2 GRACZAMI AI
+================================================================================
+
+```python
+class GameOrchestrator:
+    def __init__(self, llm, embed_model, vibe="zrównoważona", num_players=2):
+        # RAG-i (bez zmian)
+        self.lore_rag = LoreRAG(llm, embed_model)
+        self.npc_rag = NpcRAG(llm, embed_model)
+        self.judge_rag = JudgeRAG(llm, embed_model)
+        self.chronicle_rag = ChronicleRAG(llm, embed_model)
+        self.reranker = Reranker(top_k=3)
+        
+        # GM
+        self.game_master = GameMasterAgent(llm, vibe)
+        
+        # GameState
+        self.game_state = GameState(vibe=GameVibe(vibe))
+        
+        # ✨ NOWE: Gracze AI
+        self.players: list[PlayerAgent] = []
+        self._initialize_players(llm, num_players)
+        
+        # ✨ NOWE: Wspólna szyna komunikacyjna
+        self.message_history: list[dict] = []
+        
+        # ✨ NOWE: Indeks aktywnego gracza (dla TURN_BASED)
+        self.active_player_index = 0
+    
+    def _initialize_players(self, llm, num_players):
+        """Tworzy graczy AI z predefiniowanymi personami."""
+        personas = [
+            {
+                "name": "Arin",
+                "class": "złodziej",
+                "traits": "przebiegły, skryty, nie ufa obcym",
+                "backstory": "Wychował się na ulicach wielkiego miasta"
+            },
+            {
+                "name": "Theron",
+                "class": "wojownik",
+                "traits": "odważny, honorowy, lojalny",
+                "backstory": "Były żołnierz Zakonu Srebrnego Ostrza"
+            }
+        ]
+        
+        for i in range(min(num_players, len(personas))):
+            persona = personas[i]
+            player_agent = PlayerAgent(llm, persona)
+            self.players.append(player_agent)
+            
+            # Dodaj do GameState
+            player_state = PlayerState(
+                name=persona["name"],
+                persona=persona,
+                hp=100,
+                inventory=["miecz krótki", "pochodnia", "prowiant"],
+                active=True
+            )
+            self.game_state.players.append(player_state)
+    
+    def start_adventure(self) -> str:
+        """GM rozpoczyna przygodę."""
+        intro = self.game_master.narrate(
+            situation="Początek przygody w Lesie Szeptów",
+            context=self.lore_rag.query("Las Szeptów")
+        )
+        self.broadcast_message({
+            "turn": 0,
+            "speaker": "GM",
+            "type": "narration",
+            "content": intro,
+            "visible_to": ["all"]
+        })
+        return intro
+    
+    def run_free_conversation(self):
+        """Rozmowa swobodna - gracze AI rozmawiają między sobą."""
+        max_exchanges = 5
+        
+        for i in range(max_exchanges):
+            # Każdy gracz po kolei (ale bez sztywnej tury bojowej)
+            for player_agent in self.players:
+                # Gracz widzi co mówili inni
+                context = self.get_visible_history(player_agent.persona["name"])
+                
+                # Gracz AI decyduje co powiedzieć/zrobić
+                action = player_agent.decide_action(
+                    situation=context[-500:],  # ostatnie 500 znaków
+                    available_actions=None
+                )
+                
+                print(f"{player_agent.persona['name']}: {action}")
+                
+                # Broadcast do wszystkich
+                self.broadcast_message({
+                    "turn": self.game_state.current_turn,
+                    "speaker": player_agent.persona["name"],
+                    "type": "dialog",
+                    "content": action,
+                    "visible_to": ["all"]
+                })
+                
+                # Zapisz w kronice
+                self.chronicle_rag.add_entry(
+                    f"[Tura {self.game_state.current_turn}] "
+                    f"{player_agent.persona['name']}: {action}"
+                )
+            
+            # GM sprawdza czy zakończyć rozmowę
+            if self.game_master.should_end_free_conversation(self.message_history):
+                print("\nGM: (kończy rozmowę)")
+                self.game_state.conversation_mode = ConversationMode.TURN_BASED
+                break
+    
+    def run_turn_based_round(self):
+        """Jedna runda turowa - każdy gracz po kolei."""
+        for player_state in self.game_state.players:
+            if not player_state.active:
+                continue  # Gracz nieprzytomny/martwy
+            
+            # Znajdź odpowiadającego PlayerAgent
+            player_agent = next(
+                (p for p in self.players if p.persona["name"] == player_state.name),
+                None
+            )
+            
+            if not player_agent:
+                continue
+            
+            # Gracz AI podejmuje decyzję
+            context = self.get_visible_history(player_state.name)
+            action = player_agent.decide_action(
+                situation=context[-500:],
+                available_actions=["Atak", "Obrona", "Użyj przedmiotu", "Uciekaj"]
+            )
+            
+            print(f"\n{player_state.name}: {action}")
+            
+            # GM przetwarza akcję
+            result = self.process_player_action(action, player_state.name)
+            print(f"GM: {result}")
+            
+            # Broadcast
+            self.broadcast_message({
+                "turn": self.game_state.current_turn,
+                "speaker": player_state.name,
+                "type": "action",
+                "content": action,
+                "visible_to": ["all"]
+            })
+        
+        # Następna tura
+        self.game_state.next_turn()
+    
+    def broadcast_message(self, message: dict):
+        """Dodaje wiadomość do wspólnej szyny komunikacyjnej."""
+        self.message_history.append(message)
+    
+    def get_visible_history(self, player_name: str) -> str:
+        """Zwraca historię wiadomości widoczną dla gracza."""
+        visible = [
+            f"{msg['speaker']}: {msg['content']}"
+            for msg in self.message_history
+            if "all" in msg["visible_to"] or player_name in msg["visible_to"]
+        ]
+        return "\n".join(visible[-10:])  # ostatnie 10 wiadomości
+    
+    def display_game_state(self):
+        """Wyświetla aktualny stan gry."""
+        print("\n--- STAN GRY ---")
+        for player in self.game_state.players:
+            status = "✅" if player.active else "❌"
+            print(f"{status} {player.name}: HP {player.hp}/100")
+        print(f"Tura: {self.game_state.current_turn}")
+        print(f"Trudność: {self.game_state.difficulty}")
+```
+
+================================================================================
+KLUCZOWE ZMIANY W PORÓWNANIU DO OBECNEGO KODU
+================================================================================
+
+PRZED (obecny kod):
+  main.py: while True: question = input("Gracz > ")
+  └─ Człowiek wpisuje komendy
+  
+PO ZMIANACH:
+  main.py: for turn in range(max_turns):
+  ├─ orchestrator.run_free_conversation()  # AI rozmawiają
+  ├─ orchestrator.run_turn_based_round()   # AI walczą
+  └─ Żadnego input() - pełna automatyzacja!
+
+PRZED (obecny kod):
+  GameOrchestrator.__init__():
+    - Brak players
+    - Brak message_history
+  
+PO ZMIANACH:
+  GameOrchestrator.__init__():
+    + self.players: list[PlayerAgent]
+    + self.message_history: list[dict]
+    + self._initialize_players(llm, 2)
+
+PRZED (obecny kod):
+  - ConversationMode zdefiniowany ale nieużywany
+  
+PO ZMIANACH:
+  + run_free_conversation() - implementacja FREE mode
+  + run_turn_based_round() - implementacja TURN_BASED mode
+  + GM przełącza tryby automatycznie
+
+================================================================================
+TESTOWANIE MODUŁOWE
+================================================================================
+
+Test 1: Czy gracze AI się tworzą?
+  python -c "
+  from src.orchestrator import GameOrchestrator
+  orch = GameOrchestrator(llm, embed_model, num_players=2)
+  print([p.persona['name'] for p in orch.players])
+  # Oczekiwane: ['Arin', 'Theron']
+  "
+
+Test 2: Czy message bus działa?
+  orch.broadcast_message({'speaker': 'Arin', 'content': 'Test', ...})
+  print(orch.get_visible_history('Theron'))
+  # Oczekiwane: "Arin: Test"
+
+Test 3: Czy tryb FREE działa?
+  orch.game_state.conversation_mode = ConversationMode.FREE
+  orch.run_free_conversation()
+  # Oczekiwane: Gracze AI wypowiadają się automatycznie
+
+Test 4: Czy tryb TURN_BASED działa?
+  orch.game_state.conversation_mode = ConversationMode.TURN_BASED
+  orch.run_turn_based_round()
+  # Oczekiwane: Każdy gracz po kolei
+
+Test 5: Pełna symulacja
+  python main.py
+  # Oczekiwane: Gra toczy się automatycznie przez 20 tur bez inputu
+
+================================================================================
+SZCZEGÓŁOWE WYNIKI TESTÓW
+================================================================================
+
+TEST 1: RAG-i (Retrieval Augmented Generation) - ✅ DZIAŁA
+─────────────────────────────────────────────────────────────
+1.1. LoreRAG - pytanie o świat: ✅
+     Odpowiedź zawiera poprawne informacje o Królestwie Arendor
+     
+1.2. JudgeRAG - pytanie o zasady walki: ✅
+     Odpowiedź zawiera mechaniki ataku (rzut k20 + modyfikator)
+     
+1.3. NpcRAG - pytanie o postacie: ✅
+     Odpowiedź zawiera informacje o frakcjach (Gildia Cieni)
+     
+1.4. ChronicleRAG - dodanie wpisu i odczyt: ✅
+     Zapisywanie do journal.json i odczyt historii działa
+
+TEST 2: GameMasterAgent - ✅ DZIAŁA
+─────────────────────────────────────────────────────────────
+2.1. GM opisuje sytuację: ✅
+     Generuje narrację na podstawie kontekstu
+     
+2.2. GM reaguje na akcję gracza: ✅
+     Przetwarza akcje i opisuje konsekwencje
+     
+2.3. GM odgrywa NPC: ✅
+     Wcielanie się w postacie poboczne działa
+
+TEST 3: PlayerAgent - ⚠️ KOD DZIAŁA, ALE NIE JEST UŻYWANY
+─────────────────────────────────────────────────────────────
+3.1. Gracz AI podejmuje decyzję: ✅ (gdy jest uruchomiony)
+     Agent potrafi analizować sytuację i wybierać akcje
+     
+3.2. Gracz AI rozmawia: ✅ (gdy jest uruchomiony)
+     Agent potrafi generować dialogi zgodne z personą
+
+❌ PROBLEM: Kod istnieje i działa, ale main.py go nie używa!
+
+TEST 4: Orchestrator - Auto-routing - ✅ DZIAŁA
+─────────────────────────────────────────────────────────────
+4.1. Auto-detect dla pytań o historię: ✅
+     Wykrywa kontekst "chronicle"
+     
+4.2. Auto-detect dla pytań o walkę: ✅
+     Wykrywa kontekst "rules"
+     
+4.3. Auto-detect dla pytań o lore: ✅
+     Wykrywa kontekst "lore"
+
+TEST 5: Pełny przepływ rozgrywki - ⚠️ CZĘŚCIOWO DZIAŁA
+─────────────────────────────────────────────────────────────
+5.1. GM rozpoczyna przygodę: ✅
+5.2. Gracz AI reaguje: ✅ (gdy jest uruchomiony)
+5.3. GM przetwarza akcję: ✅
+5.4. Stan gry: ✅ (struktura działa)
+
+❌ PROBLEM: Brak integracji wszystkich elementów w pętli gry
+
+TEST 6: Tryby konwersacji - ❌ NIE DZIAŁA
+─────────────────────────────────────────────────────────────
+ConversationMode.FREE istnieje: ✅ (zdefiniowany)
+ConversationMode.TURN_BASED istnieje: ✅ (zdefiniowany)
+
+❌ PROBLEM: Są zdefiniowane ale kompletnie nieużywane
+
+TEST 7: Wieloosobowa rozgrywka - ❌ NIE DZIAŁA
+─────────────────────────────────────────────────────────────
+❌ PROBLEM: Kompletnie nie zaimplementowana
+- Brak mechanizmu tury między graczami
+- Brak wspólnej szyny komunikacyjnej
+- PlayerAgent nie jest integrowany
+
+================================================================================
+KOŃCOWA OCENA I NASTĘPNE KROKI
+================================================================================
+
+OBECNY STAN: 50-60% zgodności z dokumentem dyplomowym
+
+Fundamenty są solidne (RAG-i ✅, GM ✅, struktura ✅), ale brakuje kluczowych 
+elementów:
+
+❌ AI jako gracze (PlayerAgent nie jest używany)
+❌ Wieloosobowa rozgrywka (2 graczy AI)
+❌ Tryby konwersacji (FREE/TURN_BASED nie działają)
+❌ Wspólna szyna komunikacyjna (message bus)
+❌ Automatyczna rozgrywka (bez inputu człowieka)
+
+--------------------------------------------------------------------------------
+PLAN DZIAŁANIA - 5 MODUŁÓW DO IMPLEMENTACJI
+--------------------------------------------------------------------------------
+
+MODUŁ 1: Gracze AI (2 graczy: Arin + Theron)            [1-2 dni] PRIORYTET 1
+MODUŁ 2: Message Bus (wspólna szyna komunikacyjna)      [1 dzień] PRIORYTET 1
+MODUŁ 3: Tryby konwersacji (FREE/TURN_BASED + GM logic) [2 dni]   PRIORYTET 1
+MODUŁ 4: Stan postaci (HP, ekwipunek)                   [1 dzień] PRIORYTET 2
+MODUŁ 5: Kontrola rozmów (GM intervention)              [1 dzień] PRIORYTET 2
+
+CAŁKOWITY CZAS: ~6-7 dni roboczych
+
+--------------------------------------------------------------------------------
+OCZEKIWANY EFEKT PO IMPLEMENTACJI
+--------------------------------------------------------------------------------
+
+✅ 2 graczy AI (Arin, Theron) autonomicznie działają
+✅ GM zarządza przygodą bez udziału człowieka
+✅ Tryby FREE/TURN_BASED przełączają się automatycznie
+✅ Wszyscy widzą akcje wszystkich (message bus)
+✅ HP i ekwipunek aktualizują się podczas gry
+✅ Można porównywać różne modele LLM (cel pracy dyplomowej!)
+✅ Rozgrywka toczy się w pełni automatycznie
+
+ZGODNOŚĆ Z DOKUMENTEM: ~90-95% ✅
+
+--------------------------------------------------------------------------------
+ROZPOCZYNAMY OD MODUŁU 1
+--------------------------------------------------------------------------------
+
+Następny krok: Implementacja PlayerAgent w GameOrchestrator
+Plik: src/orchestrator/game_orchestrator.py

@@ -2,7 +2,9 @@ GAME_MASTER_SYSTEM_PROMPT = """Jesteś bezlitosnym Mistrzem Gry. Twoim celem nie
 lecz sprawiedliwe, ale surowe egzekwowanie zasad świata. NPC są egoistyczni, świat jest niebezpieczny. \
 Jeśli gracz popełni błąd, pozwól mu ponieść surowe konsekwencje, wliczając w to śmierć postaci.
 NPC nie są Twoimi przyjaciółmi. Są przeszkodami. Walczą inteligentnie, uciekają, gdy przegrywają, \
-i kłamią, jeśli to im pomoże."""
+i kłamią, jeśli to im pomoże.
+
+ZAWSZE ODPOWIADAJ WYŁĄCZNIE PO POLSKU. Nie używaj języka angielskiego."""
 
 
 class GameMasterAgent:
@@ -36,7 +38,8 @@ class GameMasterAgent:
             f"{self.system_prompt}\n\n"
             f"Kontekst: {context}\n\n"
             f"Sytuacja: {situation}\n\n"
-            "Opisz co się dzieje i co gracze widzą."
+            "Opisz co się dzieje i co gracze widzą.\n"
+            "OPISZ PO POLSKU."
         )
         return str(self.llm.complete(prompt))
 
@@ -46,7 +49,8 @@ class GameMasterAgent:
             f"{self.system_prompt}\n\n"
             f"Stan gry: {game_state}\n\n"
             f"Akcja gracza: {action}\n\n"
-            "Zareaguj na tę akcję jako Mistrz Gry. Opisz konsekwencje."
+            "Zareaguj na tę akcję jako Mistrz Gry. Opisz konsekwencje.\n"
+            "ODPOWIEDZ PO POLSKU."
         )
         return str(self.llm.complete(prompt))
 
@@ -56,6 +60,23 @@ class GameMasterAgent:
             f"{self.system_prompt}\n\n"
             f"Wciel się w NPC: {npc_name}. Opis: {npc_description}\n\n"
             f"Gracz mówi: {player_input}\n\n"
-            f"Odpowiedz jako {npc_name}."
+            f"Odpowiedz jako {npc_name}.\n"
+            "ODPOWIEDZ PO POLSKU."
         )
         return str(self.llm.complete(prompt))
+    
+    def should_end_free_conversation(self, message_history: list) -> bool:
+        """Decyduje czy zakończyć rozmowę swobodną."""
+        # Proste heurystyki:
+        # - Jeśli rozmowa trwa > 5 wymian
+        # - Jeśli gracze wspominają o akcji/walce
+        if len(message_history) > 10:
+            return True
+        
+        recent = " ".join([msg.get("content", "") for msg in message_history[-3:]])
+        action_keywords = ["atak", "walka", "idź", "otwórz", "przeszukaj", "użyj"]
+        
+        if any(kw in recent.lower() for kw in action_keywords):
+            return True
+        
+        return False

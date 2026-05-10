@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from llama_index.llms.ollama import Ollama
 from llama_index.embeddings.ollama import OllamaEmbedding
 from src.orchestrator import GameOrchestrator
+from src.game_state.game_state import ConversationMode
 
 load_dotenv()
 
@@ -12,27 +13,59 @@ OLLAMA_EMBEDDING_MODEL = os.getenv("OLLAMA_EMBEDDING_MODEL", "nomic-embed-text")
 
 
 def main():
-    print("=== RPGGame - AI Game Engine ===\n")
+    print("=== RPGGame - AI vs AI Game Engine ===\n")
+    print("🎭 2 Graczy AI + Mistrz Gry")
+    print("🤖 Arin (złodziej) + Theron (wojownik)\n")
 
-    llm = Ollama(model=OLLAMA_MODEL, base_url=OLLAMA_BASE_URL)
+    llm = Ollama(
+        model=OLLAMA_MODEL, 
+        base_url=OLLAMA_BASE_URL,
+        request_timeout=300.0
+    )
     embed_model = OllamaEmbedding(
-        model_name=OLLAMA_EMBEDDING_MODEL, base_url=OLLAMA_BASE_URL
+        model_name=OLLAMA_EMBEDDING_MODEL, 
+        base_url=OLLAMA_BASE_URL
     )
 
-    orchestrator = GameOrchestrator(llm=llm, embed_model=embed_model, vibe="zrównoważona")
+    # Inicjalizacja z 2 graczami AI
+    orchestrator = GameOrchestrator(
+        llm=llm, 
+        embed_model=embed_model, 
+        vibe="zrównoważona",
+        num_players=2
+    )
 
-    print("Silnik gotowy. Wpisz pytanie lub 'exit' aby wyjść.\n")
+    # GM rozpoczyna przygodę
+    print("\n" + "="*60)
+    intro = orchestrator.start_adventure()
+    print(f"GM: {intro}")
+    print("="*60 + "\n")
 
-    while True:
-        question = input("Gracz > ").strip()
-        if question.lower() in ("exit", "quit", "q"):
-            print("Do zobaczenia!")
+    max_turns = 10  # Maksymalna liczba tur
+    
+    for turn in range(max_turns):
+        orchestrator.display_game_state()
+        
+        # Sprawdź czy gra się skończyła
+        if orchestrator.is_game_over():
+            print(orchestrator.get_ending())
             break
-        if not question:
-            continue
-
-        response = orchestrator.query(question)
-        print(f"\nGM > {response}\n")
+        
+        # Tryb konwersacji zależy od sytuacji
+        if orchestrator.game_state.conversation_mode == ConversationMode.FREE:
+            print("\n--- ROZMOWA SWOBODNA ---\n")
+            orchestrator.run_free_conversation(max_exchanges=2)
+        else:
+            print("\n--- TRYB TUROWY ---\n")
+            orchestrator.run_turn_based_round()
+        
+        print("\n" + "-"*60 + "\n")
+    
+    # Zakończenie
+    print("\n" + "="*60)
+    print("Koniec gry!")
+    print(orchestrator.get_ending())
+    print("="*60)
 
 
 if __name__ == "__main__":

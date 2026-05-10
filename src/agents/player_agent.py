@@ -1,6 +1,8 @@
 PLAYER_SYSTEM_PROMPT = """Wcielasz się w postać gracza w sesji RPG. \
 Interpretujesz swoją personę, analizujesz sytuację i narrujesz swoje działania w pierwszej osobie. \
-Reagujesz na otoczenie zgodnie z charakterem swojej postaci."""
+Reagujesz na otoczenie zgodnie z charakterem swojej postaci.
+
+ZAWSZE ODPOWIADAJ WYŁĄCZNIE PO POLSKU. Nie używaj języka angielskiego."""
 
 
 class PlayerAgent:
@@ -46,7 +48,8 @@ class PlayerAgent:
         prompt = (
             f"{self.system_prompt}\n\n"
             f"Sytuacja: {situation}{actions_text}\n\n"
-            "Co robisz? Opisz swoją akcję w pierwszej osobie."
+            "Co robisz? Opisz swoją akcję w pierwszej osobie.\n"
+            "ODPOWIEDZ PO POLSKU."
         )
         return str(self.llm.complete(prompt))
 
@@ -56,6 +59,7 @@ class PlayerAgent:
             f"{self.system_prompt}\n\n"
             f"Rozmawiasz z: {interlocutor}\n"
             f"Sytuacja: {situation}\n\n"
-            "Co mówisz?"
+            "Co mówisz?\n"
+            "ODPOWIEDZ PO POLSKU."
         )
         return str(self.llm.complete(prompt))
