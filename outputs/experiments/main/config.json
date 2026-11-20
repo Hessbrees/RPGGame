@@ -1,0 +1,33 @@
+{
+  "args": {
+    "llm_models": [
+      "llama3",
+      "qwen2.5:7b",
+      "mistral"
+    ],
+    "skip_naive": false,
+    "scenes": "data/evaluation/scenes.json",
+    "limit": null,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "lora": "outputs/lora/style_r16/best",
+    "lora_scale": 0.8,
+    "image_model": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+    "steps": 25,
+    "guidance": 7.0,
+    "out": "outputs/experiments/main",
+    "style_ref": "data/training/style",
+    "phase": "eval",
+    "ollama_url": "http://localhost:11434",
+    "embed_model": "nomic-embed-text",
+    "llm_temperature": 0.2
+  },
+  "python": "3.14.3",
+  "torch": "2.11.0+cu128",
+  "diffusers": "0.42.1",
+  "transformers": "5.22.1",
+  "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU"
+}

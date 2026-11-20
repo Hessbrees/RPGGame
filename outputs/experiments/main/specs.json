@@ -1,0 +1,1272 @@
+{
+  "llama3|ctx": {
+    "s01": {
+      "spec": {
+        "location": "Edge of Whispering Woods",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Two adventurers stand at the entrance of the Whispering Woods, listening to whispers from the mist",
+        "mood": "['mysterious', 'ominous', 'intriguing']",
+        "time_of_day": "dawn",
+        "lighting": "foggy daylight",
+        "importance": 3,
+        "source_text": "Dwaj śmiałkowie stoją przed wejściem do Lasu Szeptów. Z gęstej mgły dobiegają ciche szepty, a między czarnymi drzewami migoczą bladoniebieskie światła."
+      },
+      "valid_json": true,
+      "latency_s": 5.52,
+      "raw": "{\n  \"location\": \"Edge of Whispering Woods\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Two adventurers stand at the entrance of the Whispering Woods, listening to whispers from the mist\",\n  \"mood\": [\"mysterious\", \"ominous\", \"intriguing\"],\n  \"time_of_day\": \"dawn\",\n  \"lighting\": \"foggy daylight\",\n  \"importance\": 3\n}"
+    },
+    "s02": {
+      "spec": {
+        "location": "Mysterious Forest Depths",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin crouches behind a tree, listening intently to distant whispers",
+        "mood": "['mysterious', 'intriguing', 'ominous']",
+        "time_of_day": "dusk",
+        "lighting": "foggy daylight",
+        "importance": 3,
+        "source_text": "Arin zakrada się między drzewa, ukryty w płaszczu z kapturem, i nasłuchuje odgłosów z głębi lasu."
+      },
+      "valid_json": true,
+      "latency_s": 4.74,
+      "raw": "{\n  \"location\": \"Mysterious Forest Depths\",\n  \"characters_present\": [\"Arin\"],\n  \"action\": \"Arin crouches behind a tree, listening intently to distant whispers\",\n  \"mood\": [\"mysterious\", \"intriguing\", \"ominous\"],\n  \"time_of_day\": \"dusk\",\n  \"lighting\": \"foggy daylight\",\n  \"importance\": 3\n}"
+    },
+    "s03": {
+      "spec": {
+        "location": "Moonlit forest clearing",
+        "characters_present": [
+          "Theron"
+        ],
+        "action": "Theron draws his sword, ready to face three goblin attackers",
+        "mood": "['tense', 'menacing', 'adventurous']",
+        "time_of_day": "night",
+        "lighting": "torchlight",
+        "importance": 5,
+        "source_text": "Theron wyciąga miecz i staje do walki z trzema goblinami wyskakującymi z krzaków. Pochodnie rzucają drgające cienie."
+      },
+      "valid_json": true,
+      "latency_s": 4.4,
+      "raw": "{\n\"location\": \"Moonlit forest clearing\",\n\"characters_present\": [\"Theron\", \"Goblins (3)\"],\n\"action\": \"Theron draws his sword, ready to face three goblin attackers\",\n\"mood\": [\"tense\", \"menacing\", \"adventurous\"],\n\"time_of_day\": \"night\",\n\"lighting\": \"torchlight\",\n\"importance\": 5\n}"
+    },
+    "s04": {
+      "spec": {
+        "location": "Ancient Tree Grove",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin discovers a glowing chest hidden among ancient tree roots",
+        "mood": "['curiosity', 'excitement']",
+        "time_of_day": "dawn",
+        "lighting": "soft morning light",
+        "importance": 3,
+        "source_text": "Arin znajduje wśród korzeni starożytnego drzewa zakopaną skrzynię z runami, która słabo pulsuje złotym światłem."
+      },
+      "valid_json": true,
+      "latency_s": 3.84,
+      "raw": "{\n\"location\": \"Ancient Tree Grove\",\n\"characters_present\": [\"Arin\"],\n\"action\": \"Arin discovers a glowing chest hidden among ancient tree roots\",\n\"mood\": [\"curiosity\", \"excitement\"],\n\"time_of_day\": \"dawn\",\n\"lighting\": \"soft morning light\",\n\"importance\": 3\n}"
+    },
+    "s05": {
+      "spec": {
+        "location": "Ancient Ruins of Elderath",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Arin and Theron approach the ancient elven statues under the moonlight",
+        "mood": "['mysterious', 'eerie', 'atmospheric']",
+        "time_of_day": "night",
+        "lighting": "moonlight",
+        "importance": 3,
+        "source_text": "Ruiny Elderath wyłaniają się z mgły: pokruszone kolumny, porośnięte bluszczem łuki i mchem pokryte posągi elfów w świetle księżyca."
+      },
+      "valid_json": true,
+      "latency_s": 4.9,
+      "raw": "{\n  \"location\": \"Ancient Ruins of Elderath\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Arin and Theron approach the ancient elven statues under the moonlight\",\n  \"mood\": [\"mysterious\", \"eerie\", \"atmospheric\"],\n  \"time_of_day\": \"night\",\n  \"lighting\": \"moonlight\",\n  \"importance\": 3\n}"
+    },
+    "s06": {
+      "spec": {
+        "location": "Ironhold city walls",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Theron and Arin approach the city gates, flanked by Srebrnego Ostrza guards",
+        "mood": "['serious', 'formal', 'curious']",
+        "time_of_day": "day",
+        "lighting": "sunlight",
+        "importance": 3,
+        "source_text": "Theron i Arin przechodzą przez bramę z czarnego kamienia do stolicy Ironhold. Na murach stoją strażnicy w srebrnych zbrojach."
+      },
+      "valid_json": true,
+      "latency_s": 5.61,
+      "raw": "{\n  \"location\": \"Ironhold city walls\",\n  \"characters_present\": [\"Theron\", \"Arin\", \"Srebrnego Ostrza strażnicy\"],\n  \"action\": \"Theron and Arin approach the city gates, flanked by Srebrnego Ostrza guards\",\n  \"mood\": [\"serious\", \"formal\", \"curious\"],\n  \"time_of_day\": \"day\",\n  \"lighting\": \"sunlight\",\n  \"importance\": 3\n}"
+    },
+    "s07": {
+      "spec": {
+        "location": "Edge of the Whispering Woods",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Arin tends to Theron's wounded arm by the campfire",
+        "mood": "['tense', 'concerned', 'hopeful']",
+        "time_of_day": "dusk",
+        "lighting": "flickering campfire",
+        "importance": 3,
+        "source_text": "Ranny Theron opiera się o drzewo, ciężko dysząc. Jego zbroja jest poznaczona krwią, a Arin opatruje mu ramię przy ognisku."
+      },
+      "valid_json": true,
+      "latency_s": 4.58,
+      "raw": "{\n\"location\": \"Edge of the Whispering Woods\",\n\"characters_present\": [\"Arin\", \"Theron\"],\n\"action\": \"Arin tends to Theron's wounded arm by the campfire\",\n\"mood\": [\"tense\", \"concerned\", \"hopeful\"],\n\"time_of_day\": \"dusk\",\n\"lighting\": \"flickering campfire\",\n\"importance\": 3\n}"
+    },
+    "s08": {
+      "spec": {
+        "location": "smoky tavern",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin whispers secrets to the hooded figure, eyes locked in a conspiratorial gaze",
+        "mood": "['mysterious', 'intriguing', 'sinister']",
+        "time_of_day": "night",
+        "lighting": "torchlight",
+        "importance": 3,
+        "source_text": "W tawernie pełnej dymu Arin rozmawia szeptem z zakapturzonym członkiem Gildii Cieni przy ciemnym stole."
+      },
+      "valid_json": true,
+      "latency_s": 4.61,
+      "raw": "{\n\"location\": \"smoky tavern\",\n\"characters_present\": [\"Arin\", \"Gildia Cieni member\"],\n\"action\": \"Arin whispers secrets to the hooded figure, eyes locked in a conspiratorial gaze\",\n\"mood\": [\"mysterious\", \"intriguing\", \"sinister\"],\n\"time_of_day\": \"night\",\n\"lighting\": \"torchlight\",\n\"importance\": 3\n}"
+    },
+    "s09": {
+      "spec": {
+        "location": "Mountain peak overlooking a dark valley",
+        "characters_present": [
+          "Theron"
+        ],
+        "action": "Theron holds his sword aloft, gazing at a massive dark dragon circling the valley",
+        "mood": "['ominous', 'eerie', 'dramatic']",
+        "time_of_day": "dawn",
+        "lighting": "foggy daylight",
+        "importance": 5,
+        "source_text": "Na szczycie wzgórza Theron unosi miecz, patrząc na ogromnego, ciemnego smoka krążącego nad doliną o świcie."
+      },
+      "valid_json": true,
+      "latency_s": 4.99,
+      "raw": "{\n  \"location\": \"Mountain peak overlooking a dark valley\",\n  \"characters_present\": [\"Theron\"],\n  \"action\": \"Theron holds his sword aloft, gazing at a massive dark dragon circling the valley\",\n  \"mood\": [\"ominous\", \"eerie\", \"dramatic\"],\n  \"time_of_day\": \"dawn\",\n  \"lighting\": \"foggy daylight\",\n  \"importance\": 5\n}"
+    },
+    "s10": {
+      "spec": {
+        "location": "Ancient Library of Kolegium Magów",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "The old magician points to a glowing map, illuminating the path ahead",
+        "mood": "['mysterious', 'intriguing', 'magical']",
+        "time_of_day": "dawn",
+        "lighting": "soft, magical glow",
+        "importance": 3,
+        "source_text": "Kolegium Magów: Arin i Theron stoją w ogromnej bibliotece pełnej latających ksiąg, a stary mag w niebieskiej szacie wskazuje im świecącą mapę."
+      },
+      "valid_json": true,
+      "latency_s": 5.32,
+      "raw": "{\n  \"location\": \"Ancient Library of Kolegium Magów\",\n  \"characters_present\": [\"Arin\", \"Theron\", \"Old Magician\"],\n  \"action\": \"The old magician points to a glowing map, illuminating the path ahead\",\n  \"mood\": [\"mysterious\", \"intriguing\", \"magical\"],\n  \"time_of_day\": \"dawn\",\n  \"lighting\": \"soft, magical glow\",\n  \"importance\": 3\n}"
+    },
+    "s11": {
+      "spec": {
+        "location": "Ironhold rooftops at night",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin leaps from rooftop to rooftop, pursued by guards with torches",
+        "mood": "['tense', 'desperate', 'dark']",
+        "time_of_day": "night",
+        "lighting": "torchlight",
+        "importance": 5,
+        "source_text": "Arin ucieka dachami miasta nocą, ścigany przez strażników z kuszami, a za nim płonie wieża."
+      },
+      "valid_json": true,
+      "latency_s": 4.23,
+      "raw": "{\n\"location\": \"Ironhold rooftops at night\",\n\"characters_present\": [\"Arin\", \"guards\"],\n\"action\": \"Arin leaps from rooftop to rooftop, pursued by guards with torches\",\n\"mood\": [\"tense\", \"desperate\", \"dark\"],\n\"time_of_day\": \"night\",\n\"lighting\": \"torchlight\",\n\"importance\": 5\n}"
+    },
+    "s12": {
+      "spec": {
+        "location": "Battle-scarred battlefield",
+        "characters_present": [
+          "Theron"
+        ],
+        "action": "Theron mourns over the fallen body, rain pouring down",
+        "mood": "['melancholic', 'reflective', 'somber']",
+        "time_of_day": "dawn",
+        "lighting": "rainy daylight",
+        "importance": 4,
+        "source_text": "Theron klęczy nad ciałem poległego towarzysza na polu bitwy, w deszczu, z pochyloną głową i mieczem wbitym w ziemię."
+      },
+      "valid_json": true,
+      "latency_s": 4.8,
+      "raw": "{\n  \"location\": \"Battle-scarred battlefield\",\n  \"characters_present\": [\"Theron\", \"Deceased companion\"],\n  \"action\": \"Theron mourns over the fallen body, rain pouring down\",\n  \"mood\": [\"melancholic\", \"reflective\", \"somber\"],\n  \"time_of_day\": \"dawn\",\n  \"lighting\": \"rainy daylight\",\n  \"importance\": 4\n}"
+    }
+  },
+  "llama3|noctx": {
+    "s01": {
+      "spec": {
+        "location": "Forest of Whispering Leaves entrance",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Arin and Theron stand frozen, listening to whispers from the mist",
+        "mood": "['mysterious', 'ominous', 'foreboding']",
+        "time_of_day": "dusk",
+        "lighting": "foggy daylight",
+        "importance": 3,
+        "source_text": "Dwaj śmiałkowie stoją przed wejściem do Lasu Szeptów. Z gęstej mgły dobiegają ciche szepty, a między czarnymi drzewami migoczą bladoniebieskie światła."
+      },
+      "valid_json": true,
+      "latency_s": 4.86,
+      "raw": "{\n  \"location\": \"Forest of Whispering Leaves entrance\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Arin and Theron stand frozen, listening to whispers from the mist\",\n  \"mood\": [\"mysterious\", \"ominous\", \"foreboding\"],\n  \"time_of_day\": \"dusk\",\n  \"lighting\": \"foggy daylight\",\n  \"importance\": 3\n}"
+    },
+    "s02": {
+      "spec": {
+        "location": "Mysterious forest glade",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin crouches behind a tree, listening intently to distant whispers",
+        "mood": "['mysterious', 'ominous', 'intriguing']",
+        "time_of_day": "dusk",
+        "lighting": "foggy daylight",
+        "importance": 3,
+        "source_text": "Arin zakrada się między drzewa, ukryty w płaszczu z kapturem, i nasłuchuje odgłosów z głębi lasu."
+      },
+      "valid_json": true,
+      "latency_s": 4.24,
+      "raw": "{\n\"location\": \"Mysterious forest glade\",\n\"characters_present\": [\"Arin\"],\n\"action\": \"Arin crouches behind a tree, listening intently to distant whispers\",\n\"mood\": [\"mysterious\", \"ominous\", \"intriguing\"],\n\"time_of_day\": \"dusk\",\n\"lighting\": \"foggy daylight\",\n\"importance\": 3\n}"
+    },
+    "s03": {
+      "spec": {
+        "location": "Dense forest clearing",
+        "characters_present": [
+          "Theron"
+        ],
+        "action": "Theron stands ready, sword drawn, as goblins emerge from the underbrush",
+        "mood": "['tense', 'menacing', 'intense']",
+        "time_of_day": "dusk",
+        "lighting": "torchlight",
+        "importance": 5,
+        "source_text": "Theron wyciąga miecz i staje do walki z trzema goblinami wyskakującymi z krzaków. Pochodnie rzucają drgające cienie."
+      },
+      "valid_json": true,
+      "latency_s": 4.35,
+      "raw": "{\n\"location\": \"Dense forest clearing\",\n\"characters_present\": [\"Theron\", \"Three goblins\"],\n\"action\": \"Theron stands ready, sword drawn, as goblins emerge from the underbrush\",\n\"mood\": [\"tense\", \"menacing\", \"intense\"],\n\"time_of_day\": \"dusk\",\n\"lighting\": \"torchlight\",\n\"importance\": 5\n}"
+    },
+    "s04": {
+      "spec": {
+        "location": "Ancient Tree Roots",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin discovers a pulsing golden box amidst ancient tree roots",
+        "mood": "['curiosity', 'excitement', 'mystery']",
+        "time_of_day": "dawn",
+        "lighting": "soft morning light",
+        "importance": 4,
+        "source_text": "Arin znajduje wśród korzeni starożytnego drzewa zakopaną skrzynię z runami, która słabo pulsuje złotym światłem."
+      },
+      "valid_json": true,
+      "latency_s": 3.99,
+      "raw": "{\n\"location\": \"Ancient Tree Roots\",\n\"characters_present\": [\"Arin\"],\n\"action\": \"Arin discovers a pulsing golden box amidst ancient tree roots\",\n\"mood\": [\"curiosity\", \"excitement\", \"mystery\"],\n\"time_of_day\": \"dawn\",\n\"lighting\": \"soft morning light\",\n\"importance\": 4\n}"
+    },
+    "s05": {
+      "spec": {
+        "location": "Ancient Elven Ruins",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Arin and Theron approach a crumbling column, illuminated by moonlight",
+        "mood": "['mysterious', 'atmospheric', 'haunting']",
+        "time_of_day": "night",
+        "lighting": "moonlight",
+        "importance": 3,
+        "source_text": "Ruiny Elderath wyłaniają się z mgły: pokruszone kolumny, porośnięte bluszczem łuki i mchem pokryte posągi elfów w świetle księżyca."
+      },
+      "valid_json": true,
+      "latency_s": 4.27,
+      "raw": "{\n\"location\": \"Ancient Elven Ruins\",\n\"characters_present\": [\"Arin\", \"Theron\"],\n\"action\": \"Arin and Theron approach a crumbling column, illuminated by moonlight\",\n\"mood\": [\"mysterious\", \"atmospheric\", \"haunting\"],\n\"time_of_day\": \"night\",\n\"lighting\": \"moonlight\",\n\"importance\": 3\n}"
+    },
+    "s06": {
+      "spec": {
+        "location": "Ironhold city walls",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Theron and Arin approach the city gate, flanked by the Silver Guards",
+        "mood": "['serious', 'formal', 'authoritative']",
+        "time_of_day": "dawn",
+        "lighting": "foggy daylight",
+        "importance": 3,
+        "source_text": "Theron i Arin przechodzą przez bramę z czarnego kamienia do stolicy Ironhold. Na murach stoją strażnicy w srebrnych zbrojach."
+      },
+      "valid_json": true,
+      "latency_s": 4.54,
+      "raw": "{\n\"location\": \"Ironhold city walls\",\n\"characters_present\": [\"Theron\", \"Arin\", \"Silver Guards\"],\n\"action\": \"Theron and Arin approach the city gate, flanked by the Silver Guards\",\n\"mood\": [\"serious\", \"formal\", \"authoritative\"],\n\"time_of_day\": \"dawn\",\n\"lighting\": \"foggy daylight\",\n\"importance\": 3\n}"
+    },
+    "s07": {
+      "spec": {
+        "location": "Forest clearing with a large tree",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Theron leans against the tree, heavily panting, with Arin tending to his wounded arm",
+        "mood": "['tension', 'concern', 'exhaustion']",
+        "time_of_day": "dusk",
+        "lighting": "foggy daylight",
+        "importance": 3,
+        "source_text": "Ranny Theron opiera się o drzewo, ciężko dysząc. Jego zbroja jest poznaczona krwią, a Arin opatruje mu ramię przy ognisku."
+      },
+      "valid_json": true,
+      "latency_s": 4.73,
+      "raw": "{\n\"location\": \"Forest clearing with a large tree\",\n\"characters_present\": [\"Theron\", \"Arin\"],\n\"action\": \"Theron leans against the tree, heavily panting, with Arin tending to his wounded arm\",\n\"mood\": [\"tension\", \"concern\", \"exhaustion\"],\n\"time_of_day\": \"dusk\",\n\"lighting\": \"foggy daylight\",\n\"importance\": 3\n}"
+    },
+    "s08": {
+      "spec": {
+        "location": "smoky tavern",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin whispers to the hooded figure, eyes locked in a conspiratorial gaze",
+        "mood": "['mysterious', 'intense', 'ominous']",
+        "time_of_day": "night",
+        "lighting": "torchlight",
+        "importance": 4,
+        "source_text": "W tawernie pełnej dymu Arin rozmawia szeptem z zakapturzonym członkiem Gildii Cieni przy ciemnym stole."
+      },
+      "valid_json": true,
+      "latency_s": 4.42,
+      "raw": "{\n\"location\": \"smoky tavern\",\n\"characters_present\": [\"Arin\", \"Gildii Cieni member\"],\n\"action\": \"Arin whispers to the hooded figure, eyes locked in a conspiratorial gaze\",\n\"mood\": [\"mysterious\", \"intense\", \"ominous\"],\n\"time_of_day\": \"night\",\n\"lighting\": \"torchlight\",\n\"importance\": 4\n}"
+    },
+    "s09": {
+      "spec": {
+        "location": "Mountain peak overlooking a valley",
+        "characters_present": [
+          "Theron"
+        ],
+        "action": "Theron holds his sword, gazing at a massive, dark dragon circling above the valley at dawn",
+        "mood": "['ominous', 'eerie', 'awed']",
+        "time_of_day": "dawn",
+        "lighting": "foggy daylight",
+        "importance": 5,
+        "source_text": "Na szczycie wzgórza Theron unosi miecz, patrząc na ogromnego, ciemnego smoka krążącego nad doliną o świcie."
+      },
+      "valid_json": true,
+      "latency_s": 4.5,
+      "raw": "{\n\"location\": \"Mountain peak overlooking a valley\",\n\"characters_present\": [\"Theron\"],\n\"action\": \"Theron holds his sword, gazing at a massive, dark dragon circling above the valley at dawn\",\n\"mood\": [\"ominous\", \"eerie\", \"awed\"],\n\"time_of_day\": \"dawn\",\n\"lighting\": \"foggy daylight\",\n\"importance\": 5\n}"
+    },
+    "s10": {
+      "spec": {
+        "location": "Enormous library with floating books",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "The old mage points to a glowing map with a wise gaze",
+        "mood": "['mysterious', 'ancient', 'wisdom']",
+        "time_of_day": "day",
+        "lighting": "soft daylight",
+        "importance": 3,
+        "source_text": "Kolegium Magów: Arin i Theron stoją w ogromnej bibliotece pełnej latających ksiąg, a stary mag w niebieskiej szacie wskazuje im świecącą mapę."
+      },
+      "valid_json": true,
+      "latency_s": 4.44,
+      "raw": "{\n\"location\": \"Enormous library with floating books\",\n\"characters_present\": [\"Old mage\", \"Arin\", \"Theron\"],\n\"action\": \"The old mage points to a glowing map with a wise gaze\",\n\"mood\": [\"mysterious\", \"ancient\", \"wisdom\"],\n\"time_of_day\": \"day\",\n\"lighting\": \"soft daylight\",\n\"importance\": 3\n}"
+    },
+    "s11": {
+      "spec": {
+        "location": "Roof of the city, dark and deserted",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin flees from the guards, with the burning tower behind",
+        "mood": "['tense', 'desperate', 'chaotic']",
+        "time_of_day": "night",
+        "lighting": "torchlight",
+        "importance": 5,
+        "source_text": "Arin ucieka dachami miasta nocą, ścigany przez strażników z kuszami, a za nim płonie wieża."
+      },
+      "valid_json": true,
+      "latency_s": 4.32,
+      "raw": "{\n\"location\": \"Roof of the city, dark and deserted\",\n\"characters_present\": [\"Arin\", \"Guards\"],\n\"action\": \"Arin flees from the guards, with the burning tower behind\",\n\"mood\": [\"tense\", \"desperate\", \"chaotic\"],\n\"time_of_day\": \"night\",\n\"lighting\": \"torchlight\",\n\"importance\": 5\n}"
+    },
+    "s12": {
+      "spec": {
+        "location": "Battlefield in the rain",
+        "characters_present": [
+          "Theron"
+        ],
+        "action": "Theron mourns over the fallen comrade's body",
+        "mood": "['sadness', 'grief', 'melancholy']",
+        "time_of_day": "day",
+        "lighting": "rainy daylight",
+        "importance": 4,
+        "source_text": "Theron klęczy nad ciałem poległego towarzysza na polu bitwy, w deszczu, z pochyloną głową i mieczem wbitym w ziemię."
+      },
+      "valid_json": true,
+      "latency_s": 4.17,
+      "raw": "{\n\"location\": \"Battlefield in the rain\",\n\"characters_present\": [\"Theron\", \"Felled companion\"],\n\"action\": \"Theron mourns over the fallen comrade's body\",\n\"mood\": [\"sadness\", \"grief\", \"melancholy\"],\n\"time_of_day\": \"day\",\n\"lighting\": \"rainy daylight\",\n\"importance\": 4\n}"
+    }
+  },
+  "qwen2.5:7b|ctx": {
+    "s01": {
+      "spec": {
+        "location": "Misty forest edge, Ironhold outskirts",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Arin and Theron listen to whispers, eyes scanning the dark forest",
+        "mood": "Suspense, anticipation",
+        "time_of_day": "dusk",
+        "lighting": "foggy daylight",
+        "importance": 3,
+        "source_text": "Dwaj śmiałkowie stoją przed wejściem do Lasu Szeptów. Z gęstej mgły dobiegają ciche szepty, a między czarnymi drzewami migoczą bladoniebieskie światła."
+      },
+      "valid_json": true,
+      "latency_s": 14.48,
+      "raw": "{\n  \"location\": \"Misty forest edge, Ironhold outskirts\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Arin and Theron listen to whispers, eyes scanning the dark forest\",\n  \"mood\": \"Suspense, anticipation\",\n  \"time_of_day\": \"dusk\",\n  \"lighting\": \"foggy daylight\",\n  \"importance\": 3\n}"
+    },
+    "s02": {
+      "spec": {
+        "location": "Shrouded forest edge",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin crouches, listening intently to distant noises",
+        "mood": "tense, curious",
+        "time_of_day": "dusk",
+        "lighting": "dappled moonlight",
+        "importance": 3,
+        "source_text": "Arin zakrada się między drzewa, ukryty w płaszczu z kapturem, i nasłuchuje odgłosów z głębi lasu."
+      },
+      "valid_json": true,
+      "latency_s": 4.63,
+      "raw": "{\n  \"location\": \"Shrouded forest edge\",\n  \"characters_present\": [\"Arin\"],\n  \"action\": \"Arin crouches, listening intently to distant noises\",\n  \"mood\": \"tense, curious\",\n  \"time_of_day\": \"dusk\",\n  \"lighting\": \"dappled moonlight\",\n  \"importance\": 3\n}"
+    },
+    "s03": {
+      "spec": {
+        "location": "Ironhold's darkened streets",
+        "characters_present": [
+          "Theron"
+        ],
+        "action": "Theron stands his ground, ready for combat as goblins emerge from shadows",
+        "mood": "tense, alert",
+        "time_of_day": "night",
+        "lighting": "torchlight",
+        "importance": 5,
+        "source_text": "Theron wyciąga miecz i staje do walki z trzema goblinami wyskakującymi z krzaków. Pochodnie rzucają drgające cienie."
+      },
+      "valid_json": true,
+      "latency_s": 4.62,
+      "raw": "{\n  \"location\": \"Ironhold's darkened streets\",\n  \"characters_present\": [\"Theron\"],\n  \"action\": \"Theron stands his ground, ready for combat as goblins emerge from shadows\",\n  \"mood\": \"tense, alert\",\n  \"time_of_day\": \"night\",\n  \"lighting\": \"torchlight\",\n  \"importance\": 5\n}"
+    },
+    "s04": {
+      "spec": {
+        "location": "Ancient Tree's Roots, Ironhold",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin carefully uncovers the glowing rune box, its golden light flickering.",
+        "mood": "curious, tense",
+        "time_of_day": "dawn",
+        "lighting": "dawnlight filtering through dense fog",
+        "importance": 4,
+        "source_text": "Arin znajduje wśród korzeni starożytnego drzewa zakopaną skrzynię z runami, która słabo pulsuje złotym światłem."
+      },
+      "valid_json": true,
+      "latency_s": 3.84,
+      "raw": "{\"location\":\"Ancient Tree's Roots, Ironhold\",\"characters_present\":[\"Arin\"],\"action\":\"Arin carefully uncovers the glowing rune box, its golden light flickering.\",\"mood\":\"curious, tense\",\"time_of_day\":\"dawn\",\"lighting\":\"dawnlight filtering through dense fog\",\"importance\":4}"
+    },
+    "s05": {
+      "spec": {
+        "location": "Ruins of Elderath under moonlight",
+        "characters_present": [],
+        "action": "Eerie moonlight bathes ancient statues and crumbling columns",
+        "mood": "mysterious, eerie",
+        "time_of_day": "night",
+        "lighting": "moonlight",
+        "importance": 3,
+        "source_text": "Ruiny Elderath wyłaniają się z mgły: pokruszone kolumny, porośnięte bluszczem łuki i mchem pokryte posągi elfów w świetle księżyca."
+      },
+      "valid_json": true,
+      "latency_s": 4.38,
+      "raw": "{\n  \"location\": \"Ruins of Elderath under moonlight\",\n  \"characters_present\": [],\n  \"action\": \"Eerie moonlight bathes ancient statues and crumbling columns\",\n  \"mood\": \"mysterious, eerie\",\n  \"time_of_day\": \"night\",\n  \"lighting\": \"moonlight\",\n  \"importance\": 3\n}"
+    },
+    "s06": {
+      "spec": {
+        "location": "Ironhold's dark stone walls under moonlight",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Strangers enter the city, greeted by watchful guards",
+        "mood": "Suspense, curiosity",
+        "time_of_day": "dusk",
+        "lighting": "moonlight",
+        "importance": 3,
+        "source_text": "Theron i Arin przechodzą przez bramę z czarnego kamienia do stolicy Ironhold. Na murach stoją strażnicy w srebrnych zbrojach."
+      },
+      "valid_json": true,
+      "latency_s": 5.01,
+      "raw": "{\n  \"location\": \"Ironhold's dark stone walls under moonlight\",\n  \"characters_present\": [\"Theron\", \"Arin\"],\n  \"action\": \"Strangers enter the city, greeted by watchful guards\",\n  \"mood\": \"Suspense, curiosity\",\n  \"time_of_day\": \"dusk\",\n  \"lighting\": \"moonlight\",\n  \"importance\": 3\n}"
+    },
+    "s07": {
+      "spec": {
+        "location": "By the campfire in the forest",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Arin carefully bandages Theron's wound while he rests.",
+        "mood": "Serious, tense",
+        "time_of_day": "Dusk",
+        "lighting": "Flickering campfire light",
+        "importance": 3,
+        "source_text": "Ranny Theron opiera się o drzewo, ciężko dysząc. Jego zbroja jest poznaczona krwią, a Arin opatruje mu ramię przy ognisku."
+      },
+      "valid_json": true,
+      "latency_s": 5.14,
+      "raw": "{\n  \"location\": \"By the campfire in the forest\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Arin carefully bandages Theron's wound while he rests.\",\n  \"mood\": \"Serious, tense\",\n  \"time_of_day\": \"Dusk\",\n  \"lighting\": \"Flickering campfire light\",\n  \"importance\": 3\n}"
+    },
+    "s08": {
+      "spec": {
+        "location": "smoky tavern with dark wooden tables",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin whispers secrets to a hooded figure",
+        "mood": "tense, secretive",
+        "time_of_day": "night",
+        "lighting": "torchlight",
+        "importance": 3,
+        "source_text": "W tawernie pełnej dymu Arin rozmawia szeptem z zakapturzonym członkiem Gildii Cieni przy ciemnym stole."
+      },
+      "valid_json": true,
+      "latency_s": 4.86,
+      "raw": "{\n  \"location\": \"smoky tavern with dark wooden tables\",\n  \"characters_present\": [\"Arin\", \"Guild of Shadows member\"],\n  \"action\": \"Arin whispers secrets to a hooded figure\",\n  \"mood\": \"tense, secretive\",\n  \"time_of_day\": \"night\",\n  \"lighting\": \"torchlight\",\n  \"importance\": 3\n}"
+    },
+    "s09": {
+      "spec": {
+        "location": "Mountain peak at dawn",
+        "characters_present": [
+          "Theron"
+        ],
+        "action": "Theron raises his sword, staring at the massive black dragon circling the valley.",
+        "mood": "awe, tension",
+        "time_of_day": "dawn",
+        "lighting": "dawn light with dragon's scales glinting",
+        "importance": 5,
+        "source_text": "Na szczycie wzgórza Theron unosi miecz, patrząc na ogromnego, ciemnego smoka krążącego nad doliną o świcie."
+      },
+      "valid_json": true,
+      "latency_s": 3.9,
+      "raw": "{\"location\":\"Mountain peak at dawn\",\"characters_present\":[\"Theron\"],\"action\":\"Theron raises his sword, staring at the massive black dragon circling the valley.\",\"mood\":\"awe, tension\",\"time_of_day\":\"dawn\",\"lighting\":\"dawn light with dragon's scales glinting\",\"importance\":5}"
+    },
+    "s10": {
+      "spec": {
+        "location": "Grand library of Ironhold, shelves of floating books",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Old Mage points at glowing map while Arin and Theron study it intently",
+        "mood": "mysterious, scholarly",
+        "time_of_day": "day",
+        "lighting": "sunlight filtering through high windows",
+        "importance": 3,
+        "source_text": "Kolegium Magów: Arin i Theron stoją w ogromnej bibliotece pełnej latających ksiąg, a stary mag w niebieskiej szacie wskazuje im świecącą mapę."
+      },
+      "valid_json": true,
+      "latency_s": 5.73,
+      "raw": "{\n  \"location\": \"Grand library of Ironhold, shelves of floating books\",\n  \"characters_present\": [\"Arin\", \"Theron\", \"Old Mage\"],\n  \"action\": \"Old Mage points at glowing map while Arin and Theron study it intently\",\n  \"mood\": \"mysterious, scholarly\",\n  \"time_of_day\": \"day\",\n  \"lighting\": \"sunlight filtering through high windows\",\n  \"importance\": 3\n}"
+    },
+    "s11": {
+      "spec": {
+        "location": "Ironhold's rooftops, night",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin sprints across rooftops, guards firing arrows; flames engulf a tower",
+        "mood": "tense, urgent",
+        "time_of_day": "night",
+        "lighting": "moonlight, flickering torches",
+        "importance": 5,
+        "source_text": "Arin ucieka dachami miasta nocą, ścigany przez strażników z kuszami, a za nim płonie wieża."
+      },
+      "valid_json": true,
+      "latency_s": 3.91,
+      "raw": "{\"location\":\"Ironhold's rooftops, night\",\"characters_present\":[\"Arin\",\"guards\"],\"action\":\"Arin sprints across rooftops, guards firing arrows; flames engulf a tower\",\"mood\":\"tense, urgent\",\"time_of_day\":\"night\",\"lighting\":\"moonlight, flickering torches\",\"importance\":5}"
+    },
+    "s12": {
+      "spec": {
+        "location": "Field of battle, rain-soaked, Ironhold outskirts",
+        "characters_present": [
+          "Theron"
+        ],
+        "action": "Theron mourns, sword in ground, rain pelting down",
+        "mood": "grief, sorrow, solitude",
+        "time_of_day": "afternoon",
+        "lighting": "rain-drenched gloom",
+        "importance": 5,
+        "source_text": "Theron klęczy nad ciałem poległego towarzysza na polu bitwy, w deszczu, z pochyloną głową i mieczem wbitym w ziemię."
+      },
+      "valid_json": true,
+      "latency_s": 3.99,
+      "raw": "{\"location\":\"Field of battle, rain-soaked, Ironhold outskirts\",\"characters_present\":[\"Theron\"],\"action\":\"Theron mourns, sword in ground, rain pelting down\",\"mood\":\"grief, sorrow, solitude\",\"time_of_day\":\"afternoon\",\"lighting\":\"rain-drenched gloom\",\"importance\":5}"
+    }
+  },
+  "qwen2.5:7b|noctx": {
+    "s01": {
+      "spec": {
+        "location": "Misty entrance to Whispering Woods",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Arin and Theron listen to faint whispers, eyes scanning the forest",
+        "mood": "Suspense, anticipation",
+        "time_of_day": "dusk",
+        "lighting": "moonlight",
+        "importance": 3,
+        "source_text": "Dwaj śmiałkowie stoją przed wejściem do Lasu Szeptów. Z gęstej mgły dobiegają ciche szepty, a między czarnymi drzewami migoczą bladoniebieskie światła."
+      },
+      "valid_json": true,
+      "latency_s": 4.84,
+      "raw": "{\n  \"location\": \"Misty entrance to Whispering Woods\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Arin and Theron listen to faint whispers, eyes scanning the forest\",\n  \"mood\": \"Suspense, anticipation\",\n  \"time_of_day\": \"dusk\",\n  \"lighting\": \"moonlight\",\n  \"importance\": 3\n}"
+    },
+    "s02": {
+      "spec": {
+        "location": "Dark forest glade, misty",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin listens intently, tension in his stance",
+        "mood": "suspense, anticipation",
+        "time_of_day": "dawn",
+        "lighting": "dappled moonlight",
+        "importance": 3,
+        "source_text": "Arin zakrada się między drzewa, ukryty w płaszczu z kapturem, i nasłuchuje odgłosów z głębi lasu."
+      },
+      "valid_json": true,
+      "latency_s": 3.41,
+      "raw": "{\"location\":\"Dark forest glade, misty\",\"characters_present\":[\"Arin\"],\"action\":\"Arin listens intently, tension in his stance\",\"mood\":\"suspense, anticipation\",\"time_of_day\":\"dawn\",\"lighting\":\"dappled moonlight\",\"importance\":3}"
+    },
+    "s03": {
+      "spec": {
+        "location": "Dark forest clearing",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Theron readies his sword as goblins emerge from shadows",
+        "mood": "tense, alert",
+        "time_of_day": "dusk",
+        "lighting": "torchlight",
+        "importance": 5,
+        "source_text": "Theron wyciąga miecz i staje do walki z trzema goblinami wyskakującymi z krzaków. Pochodnie rzucają drgające cienie."
+      },
+      "valid_json": true,
+      "latency_s": 5.46,
+      "raw": "{\n  \"location\": \"Dark forest clearing\",\n  \"characters_present\": [\"Theron\", \"Arin\", \"Goblin 1\", \"Goblin 2\", \"Goblin 3\"],\n  \"action\": \"Theron readies his sword as goblins emerge from shadows\",\n  \"mood\": \"tense, alert\",\n  \"time_of_day\": \"dusk\",\n  \"lighting\": \"torchlight\",\n  \"importance\": 5\n}"
+    },
+    "s04": {
+      "spec": {
+        "location": "Ancient forest, beneath a massive tree",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin opens the glowing rune-covered chest",
+        "mood": "mysterious, curious",
+        "time_of_day": "dawn",
+        "lighting": "dappled sunlight",
+        "importance": 4,
+        "source_text": "Arin znajduje wśród korzeni starożytnego drzewa zakopaną skrzynię z runami, która słabo pulsuje złotym światłem."
+      },
+      "valid_json": true,
+      "latency_s": 3.26,
+      "raw": "{\"location\":\"Ancient forest, beneath a massive tree\",\"characters_present\":[\"Arin\"],\"action\":\"Arin opens the glowing rune-covered chest\",\"mood\":\"mysterious, curious\",\"time_of_day\":\"dawn\",\"lighting\":\"dappled sunlight\",\"importance\":4}"
+    },
+    "s05": {
+      "spec": {
+        "location": "Ruins of Elderath bathed in moonlight",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Arin and Theron explore the eerie, moss-covered ruins under moonlight",
+        "mood": "eerie, mysterious",
+        "time_of_day": "night",
+        "lighting": "moonlight",
+        "importance": 3,
+        "source_text": "Ruiny Elderath wyłaniają się z mgły: pokruszone kolumny, porośnięte bluszczem łuki i mchem pokryte posągi elfów w świetle księżyca."
+      },
+      "valid_json": true,
+      "latency_s": 3.73,
+      "raw": "{\"location\":\"Ruins of Elderath bathed in moonlight\",\"characters_present\":[\"Arin\",\"Theron\"],\"action\":\"Arin and Theron explore the eerie, moss-covered ruins under moonlight\",\"mood\":\"eerie, mysterious\",\"time_of_day\":\"night\",\"lighting\":\"moonlight\",\"importance\":3}"
+    },
+    "s06": {
+      "spec": {
+        "location": "Ironhold's stone gate under moonlight",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Theron and Arin are greeted by silver-armored guards as they enter.",
+        "mood": "formal, tense",
+        "time_of_day": "dusk",
+        "lighting": "moonlight",
+        "importance": 3,
+        "source_text": "Theron i Arin przechodzą przez bramę z czarnego kamienia do stolicy Ironhold. Na murach stoją strażnicy w srebrnych zbrojach."
+      },
+      "valid_json": true,
+      "latency_s": 4.87,
+      "raw": "{\n  \"location\": \"Ironhold's stone gate under moonlight\",\n  \"characters_present\": [\"Theron\", \"Arin\"],\n  \"action\": \"Theron and Arin are greeted by silver-armored guards as they enter.\",\n  \"mood\": \"formal, tense\",\n  \"time_of_day\": \"dusk\",\n  \"lighting\": \"moonlight\",\n  \"importance\": 3\n}"
+    },
+    "s07": {
+      "spec": {
+        "location": "By the campfire in the forest clearing",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Arin bandages Theron's wound while he rests",
+        "mood": "Serious, tense",
+        "time_of_day": "Dusk",
+        "lighting": "Flickering campfire light",
+        "importance": 3,
+        "source_text": "Ranny Theron opiera się o drzewo, ciężko dysząc. Jego zbroja jest poznaczona krwią, a Arin opatruje mu ramię przy ognisku."
+      },
+      "valid_json": true,
+      "latency_s": 5.12,
+      "raw": "{\n  \"location\": \"By the campfire in the forest clearing\",\n  \"characters_present\": [\"Theron\", \"Arin\"],\n  \"action\": \"Arin bandages Theron's wound while he rests\",\n  \"mood\": \"Serious, tense\",\n  \"time_of_day\": \"Dusk\",\n  \"lighting\": \"Flickering campfire light\",\n  \"importance\": 3\n}"
+    },
+    "s08": {
+      "spec": {
+        "location": "smoky tavern with dark table",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Arin whispers to a hooded Gildii Cieni member",
+        "mood": "secretive, tense",
+        "time_of_day": "night",
+        "lighting": "torchlight",
+        "importance": 3,
+        "source_text": "W tawernie pełnej dymu Arin rozmawia szeptem z zakapturzonym członkiem Gildii Cieni przy ciemnym stole."
+      },
+      "valid_json": true,
+      "latency_s": 3.79,
+      "raw": "{\"location\":\"smoky tavern with dark table\",\"characters_present\":[\"Arin\",\"Theron (implied)\"],\"action\":\"Arin whispers to a hooded Gildii Cieni member\",\"mood\":\"secretive, tense\",\"time_of_day\":\"night\",\"lighting\":\"torchlight\",\"importance\":3}"
+    },
+    "s09": {
+      "spec": {
+        "location": "Mountain peak at dawn",
+        "characters_present": [
+          "Theron"
+        ],
+        "action": "Theron raises his sword, staring at the giant, dark dragon circling the valley.",
+        "mood": "awe, tension",
+        "time_of_day": "dawn",
+        "lighting": "dawnlight",
+        "importance": 5,
+        "source_text": "Na szczycie wzgórza Theron unosi miecz, patrząc na ogromnego, ciemnego smoka krążącego nad doliną o świcie."
+      },
+      "valid_json": true,
+      "latency_s": 3.42,
+      "raw": "{\"location\":\"Mountain peak at dawn\",\"characters_present\":[\"Theron\"],\"action\":\"Theron raises his sword, staring at the giant, dark dragon circling the valley.\",\"mood\":\"awe, tension\",\"time_of_day\":\"dawn\",\"lighting\":\"dawnlight\",\"importance\":5}"
+    },
+    "s10": {
+      "spec": {
+        "location": "Enormous floating book library",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Old Mage points to glowing map among flying books",
+        "mood": "mystical, ancient",
+        "time_of_day": "day",
+        "lighting": "sunlight through stained glass",
+        "importance": 3,
+        "source_text": "Kolegium Magów: Arin i Theron stoją w ogromnej bibliotece pełnej latających ksiąg, a stary mag w niebieskiej szacie wskazuje im świecącą mapę."
+      },
+      "valid_json": true,
+      "latency_s": 6.51,
+      "raw": "{\n  \"location\": \"Enormous floating book library\",\n  \"characters_present\": [\"Arin\", \"Theron\", \"Old Mage\"],\n  \"action\": \"Old Mage points to glowing map among flying books\",\n  \"mood\": \"mystical, ancient\",\n  \"time_of_day\": \"day\",\n  \"lighting\": \"sunlight through stained glass\",\n  \"importance\": 3\n}"
+    },
+    "s11": {
+      "spec": {
+        "location": "Roof tops of the city at night",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin sprints, narrowly avoiding guards' arrows, as the tower burns behind him",
+        "mood": "tense, urgent",
+        "time_of_day": "night",
+        "lighting": "moonlight",
+        "importance": 5,
+        "source_text": "Arin ucieka dachami miasta nocą, ścigany przez strażników z kuszami, a za nim płonie wieża."
+      },
+      "valid_json": true,
+      "latency_s": 3.63,
+      "raw": "{\"location\":\"Roof tops of the city at night\",\"characters_present\":[\"Arin\",\"guards\"],\"action\":\"Arin sprints, narrowly avoiding guards' arrows, as the tower burns behind him\",\"mood\":\"tense, urgent\",\"time_of_day\":\"night\",\"lighting\":\"moonlight\",\"importance\":5}"
+    },
+    "s12": {
+      "spec": {
+        "location": "Field of battle, rain-soaked",
+        "characters_present": [
+          "Theron"
+        ],
+        "action": "Theron kneels over a fallen comrade in the rain, head bowed",
+        "mood": "Grief, solemnity",
+        "time_of_day": "Afternoon",
+        "lighting": "Foggy daylight",
+        "importance": 5,
+        "source_text": "Theron klęczy nad ciałem poległego towarzysza na polu bitwy, w deszczu, z pochyloną głową i mieczem wbitym w ziemię."
+      },
+      "valid_json": true,
+      "latency_s": 4.76,
+      "raw": "{\n  \"location\": \"Field of battle, rain-soaked\",\n  \"characters_present\": [\"Theron\"],\n  \"action\": \"Theron kneels over a fallen comrade in the rain, head bowed\",\n  \"mood\": \"Grief, solemnity\",\n  \"time_of_day\": \"Afternoon\",\n  \"lighting\": \"Foggy daylight\",\n  \"importance\": 5\n}"
+    }
+  },
+  "mistral|ctx": {
+    "s01": {
+      "spec": {
+        "location": "Entrance to the Whispering Woods",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Investigating mysterious blue lights in the Whispering Woods",
+        "mood": "Tense, curious, ominous",
+        "time_of_day": "Night",
+        "lighting": "Moonlight filtering through fog",
+        "importance": 3,
+        "source_text": "Dwaj śmiałkowie stoją przed wejściem do Lasu Szeptów. Z gęstej mgły dobiegają ciche szepty, a między czarnymi drzewami migoczą bladoniebieskie światła."
+      },
+      "valid_json": true,
+      "latency_s": 9.39,
+      "raw": " {\n  \"location\": \"Entrance to the Whispering Woods\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Investigating mysterious blue lights in the Whispering Woods\",\n  \"mood\": \"Tense, curious, ominous\",\n  \"time_of_day\": \"Night\",\n  \"lighting\": \"Moonlight filtering through fog\",\n  \"importance\": 3\n}"
+    },
+    "s02": {
+      "spec": {
+        "location": "Mysterious depths of Las Szeptów",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin listens to sounds from the heart of the forest",
+        "mood": "Tense, suspenseful, foreboding",
+        "time_of_day": "Dusk",
+        "lighting": "Dappled moonlight filtering through trees",
+        "importance": 4,
+        "source_text": "Arin zakrada się między drzewa, ukryty w płaszczu z kapturem, i nasłuchuje odgłosów z głębi lasu."
+      },
+      "valid_json": true,
+      "latency_s": 8.73,
+      "raw": " {\n  \"location\": \"Mysterious depths of Las Szeptów\",\n  \"characters_present\": [\"Arin\"],\n  \"action\": \"Arin listens to sounds from the heart of the forest\",\n  \"mood\": \"Tense, suspenseful, foreboding\",\n  \"time_of_day\": \"Dusk\",\n  \"lighting\": \"Dappled moonlight filtering through trees\",\n  \"importance\": 4\n}"
+    },
+    "s03": {
+      "spec": {
+        "location": "Darkened Grove near Ironhold",
+        "characters_present": [
+          "Theron"
+        ],
+        "action": "Theron fights off 3 goblins in the shadows illuminated by flickering torches",
+        "mood": "Tense, Dangerous, Dramatic",
+        "time_of_day": "Night",
+        "lighting": "Torchlight and dancing shadows",
+        "importance": 5,
+        "source_text": "Theron wyciąga miecz i staje do walki z trzema goblinami wyskakującymi z krzaków. Pochodnie rzucają drgające cienie."
+      },
+      "valid_json": true,
+      "latency_s": 9.52,
+      "raw": " {\n  \"location\": \"Darkened Grove near Ironhold\",\n  \"characters_present\": [\"Theron\", \"3 Goblins\"],\n  \"action\": \"Theron fights off 3 goblins in the shadows illuminated by flickering torches\",\n  \"mood\": \"Tense, Dangerous, Dramatic\",\n  \"time_of_day\": \"Night\",\n  \"lighting\": \"Torchlight and dancing shadows\",\n  \"importance\": \"5\"\n}"
+    },
+    "s04": {
+      "spec": {
+        "location": "Ancient Tree Grove in Las Szeptów",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Discovers a glowing box buried among ancient tree roots",
+        "mood": "Excitement, Mystery, Anticipation",
+        "time_of_day": "Dusk",
+        "lighting": "Flickering torchlight and golden glow from the box",
+        "importance": 5,
+        "source_text": "Arin znajduje wśród korzeni starożytnego drzewa zakopaną skrzynię z runami, która słabo pulsuje złotym światłem."
+      },
+      "valid_json": true,
+      "latency_s": 8.84,
+      "raw": " {\n  \"location\": \"Ancient Tree Grove in Las Szeptów\",\n  \"characters_present\": [\"Arin\"],\n  \"action\": \"Discovers a glowing box buried among ancient tree roots\",\n  \"mood\": \"Excitement, Mystery, Anticipation\",\n  \"time_of_day\": \"Dusk\",\n  \"lighting\": \"Flickering torchlight and golden glow from the box\",\n  \"importance\": \"5\"\n}"
+    },
+    "s05": {
+      "spec": {
+        "location": "Misty Ruins of Elderath",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Exploring ancient, moonlit ruins filled with elven statues and ivy",
+        "mood": "Mystical, eerie, awe-inspiring",
+        "time_of_day": "Night",
+        "lighting": "Moonlight",
+        "importance": 4,
+        "source_text": "Ruiny Elderath wyłaniają się z mgły: pokruszone kolumny, porośnięte bluszczem łuki i mchem pokryte posągi elfów w świetle księżyca."
+      },
+      "valid_json": true,
+      "latency_s": 8.98,
+      "raw": " {\n  \"location\": \"Misty Ruins of Elderath\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Exploring ancient, moonlit ruins filled with elven statues and ivy\",\n  \"mood\": \"Mystical, eerie, awe-inspiring\",\n  \"time_of_day\": \"Night\",\n  \"lighting\": \"Moonlight\",\n  \"importance\": 4\n}"
+    },
+    "s06": {
+      "spec": {
+        "location": "Black Stone Gate of Ironhold",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Entering the capital city through a gate guarded by silver-armored sentinels",
+        "mood": "Awe, anticipation",
+        "time_of_day": "Day",
+        "lighting": "Sunlight reflecting off silver armor",
+        "importance": 4,
+        "source_text": "Theron i Arin przechodzą przez bramę z czarnego kamienia do stolicy Ironhold. Na murach stoją strażnicy w srebrnych zbrojach."
+      },
+      "valid_json": true,
+      "latency_s": 8.37,
+      "raw": " {\n  \"location\": \"Black Stone Gate of Ironhold\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Entering the capital city through a gate guarded by silver-armored sentinels\",\n  \"mood\": \"Awe, anticipation\",\n  \"time_of_day\": \"Day\",\n  \"lighting\": \"Sunlight reflecting off silver armor\",\n  \"importance\": \"4\"\n}"
+    },
+    "s07": {
+      "spec": {
+        "location": "Forest Healing Camp",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Arin tends to Theron's wound by a campfire in the forest",
+        "mood": "Serene, somber, hopeful",
+        "time_of_day": "Dusk",
+        "lighting": "Campfire light",
+        "importance": 5,
+        "source_text": "Ranny Theron opiera się o drzewo, ciężko dysząc. Jego zbroja jest poznaczona krwią, a Arin opatruje mu ramię przy ognisku."
+      },
+      "valid_json": true,
+      "latency_s": 8.1,
+      "raw": " {\n  \"location\": \"Forest Healing Camp\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Arin tends to Theron's wound by a campfire in the forest\",\n  \"mood\": \"Serene, somber, hopeful\",\n  \"time_of_day\": \"Dusk\",\n  \"lighting\": \"Campfire light\",\n  \"importance\": \"5\"\n}"
+    },
+    "s08": {
+      "spec": {
+        "location": "Smoky tavern in Ironhold",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Whispering in shadows at a dark table",
+        "mood": "Secretive, tense, suspicious",
+        "time_of_day": "Night",
+        "lighting": "Torchlight",
+        "importance": 5,
+        "source_text": "W tawernie pełnej dymu Arin rozmawia szeptem z zakapturzonym członkiem Gildii Cieni przy ciemnym stole."
+      },
+      "valid_json": true,
+      "latency_s": 8.97,
+      "raw": " {\n  \"location\": \"Smoky tavern in Ironhold\",\n  \"characters_present\": [\"Arin\", \"Zakonu Srebrnego Ostrza (Guild of Shadows member)\"],\n  \"action\": \"Whispering in shadows at a dark table\",\n  \"mood\": \"Secretive, tense, suspicious\",\n  \"time_of_day\": \"Night\",\n  \"lighting\": \"Torchlight\",\n  \"importance\": 5\n}"
+    },
+    "s09": {
+      "spec": {
+        "location": "Sunrise at Peak Overlook",
+        "characters_present": [
+          "Theron"
+        ],
+        "action": "Theron brandishes his sword at a dark dragon soaring over the valley at dawn",
+        "mood": "tense, ominous, anticipation",
+        "time_of_day": "dawn",
+        "lighting": "foggy daylight",
+        "importance": 5,
+        "source_text": "Na szczycie wzgórza Theron unosi miecz, patrząc na ogromnego, ciemnego smoka krążącego nad doliną o świcie."
+      },
+      "valid_json": true,
+      "latency_s": 8.14,
+      "raw": " {\n  \"location\": \"Sunrise at Peak Overlook\",\n  \"characters_present\": [\"Theron\"],\n  \"action\": \"Theron brandishes his sword at a dark dragon soaring over the valley at dawn\",\n  \"mood\": \"tense, ominous, anticipation\",\n  \"time_of_day\": \"dawn\",\n  \"lighting\": \"foggy daylight\",\n  \"importance\": 5\n}"
+    },
+    "s10": {
+      "spec": {
+        "location": "Grand Library of the College of Magi",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Old Mag points to a glowing map in the vast library of floating books",
+        "mood": "Curious, scholarly, tense",
+        "time_of_day": "Day",
+        "lighting": "Daylight filtered through stained-glass windows",
+        "importance": 5,
+        "source_text": "Kolegium Magów: Arin i Theron stoją w ogromnej bibliotece pełnej latających ksiąg, a stary mag w niebieskiej szacie wskazuje im świecącą mapę."
+      },
+      "valid_json": true,
+      "latency_s": 9.0,
+      "raw": " {\n  \"location\": \"Grand Library of the College of Magi\",\n  \"characters_present\": [\"Arin\", \"Theron\", \"Old Mag\"],\n  \"action\": \"Old Mag points to a glowing map in the vast library of floating books\",\n  \"mood\": \"Curious, scholarly, tense\",\n  \"time_of_day\": \"Day\",\n  \"lighting\": \"Daylight filtered through stained-glass windows\",\n  \"importance\": \"5\"\n}"
+    },
+    "s11": {
+      "spec": {
+        "location": "Roofed Ironhold at night",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Arin evades guards while a tower burns",
+        "mood": "Tense, dangerous, suspenseful",
+        "time_of_day": "Night",
+        "lighting": "Moonlight and torchlight",
+        "importance": 5,
+        "source_text": "Arin ucieka dachami miasta nocą, ścigany przez strażników z kuszami, a za nim płonie wieża."
+      },
+      "valid_json": true,
+      "latency_s": 8.11,
+      "raw": " {\n  \"location\": \"Roofed Ironhold at night\",\n  \"characters_present\": [\"Arin\", \"Guardians with spears\"],\n  \"action\": \"Arin evades guards while a tower burns\",\n  \"mood\": \"Tense, dangerous, suspenseful\",\n  \"time_of_day\": \"Night\",\n  \"lighting\": \"Moonlight and torchlight\",\n  \"importance\": \"5\"\n}"
+    },
+    "s12": {
+      "spec": {
+        "location": "Battlefield in the pouring rain",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Theron mourns fallen companion on battlefield",
+        "mood": "Sad, solemn, reflective",
+        "time_of_day": "Rainy",
+        "lighting": "Dim, intermittent lightning",
+        "importance": 5,
+        "source_text": "Theron klęczy nad ciałem poległego towarzysza na polu bitwy, w deszczu, z pochyloną głową i mieczem wbitym w ziemię."
+      },
+      "valid_json": true,
+      "latency_s": 8.21,
+      "raw": " {\n  \"location\": \"Battlefield in the pouring rain\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Theron mourns fallen companion on battlefield\",\n  \"mood\": \"Sad, solemn, reflective\",\n  \"time_of_day\": \"Rainy\",\n  \"lighting\": \"Dim, intermittent lightning\",\n  \"importance\": \"5\"\n}"
+    }
+  },
+  "mistral|noctx": {
+    "s01": {
+      "spec": {
+        "location": "Entrance to Whisperwood Forest",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Listen to eerie whispers, see ethereal blue lights in the dense forest",
+        "mood": "Spooky, Mysterious, Tense",
+        "time_of_day": "Night",
+        "lighting": "Moonlight filtering through dense forest",
+        "importance": 4,
+        "source_text": "Dwaj śmiałkowie stoją przed wejściem do Lasu Szeptów. Z gęstej mgły dobiegają ciche szepty, a między czarnymi drzewami migoczą bladoniebieskie światła."
+      },
+      "valid_json": true,
+      "latency_s": 8.83,
+      "raw": " {\n  \"location\": \"Entrance to Whisperwood Forest\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Listen to eerie whispers, see ethereal blue lights in the dense forest\",\n  \"mood\": \"Spooky, Mysterious, Tense\",\n  \"time_of_day\": \"Night\",\n  \"lighting\": \"Moonlight filtering through dense forest\",\n  \"importance\": 4\n}"
+    },
+    "s02": {
+      "spec": {
+        "location": "Stealthy approach through a dense forest",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Listens to sounds from the depths of the forest",
+        "mood": "Tense, suspenseful, alert",
+        "time_of_day": "Day",
+        "lighting": "Dappled sunlight filtering through leaves",
+        "importance": 3,
+        "source_text": "Arin zakrada się między drzewa, ukryty w płaszczu z kapturem, i nasłuchuje odgłosów z głębi lasu."
+      },
+      "valid_json": true,
+      "latency_s": 7.5,
+      "raw": " {\n  \"location\": \"Stealthy approach through a dense forest\",\n  \"characters_present\": [\"Arin\"],\n  \"action\": \"Listens to sounds from the depths of the forest\",\n  \"mood\": \"Tense, suspenseful, alert\",\n  \"time_of_day\": \"Day\",\n  \"lighting\": \"Dappled sunlight filtering through leaves\",\n  \"importance\": 3\n}"
+    },
+    "s03": {
+      "spec": {
+        "location": "Dark forest clearing",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Theron draws his sword and engages in combat with three goblins emerging from shrubs",
+        "mood": "['tense', 'dangerous', 'dramatic']",
+        "time_of_day": "night",
+        "lighting": "torchlight and flickering shadows",
+        "importance": 5,
+        "source_text": "Theron wyciąga miecz i staje do walki z trzema goblinami wyskakującymi z krzaków. Pochodnie rzucają drgające cienie."
+      },
+      "valid_json": true,
+      "latency_s": 9.02,
+      "raw": " {\n  \"location\": \"Dark forest clearing\",\n  \"characters_present\": [\"Arin\", \"Theron\", \"3 goblins\"],\n  \"action\": \"Theron draws his sword and engages in combat with three goblins emerging from shrubs\",\n  \"mood\": [\"tense\", \"dangerous\", \"dramatic\"],\n  \"time_of_day\": \"night\",\n  \"lighting\": \"torchlight and flickering shadows\",\n  \"importance\": \"5\"\n}"
+    },
+    "s04": {
+      "spec": {
+        "location": "Ancient tree roots with hidden chest",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Discovers a rune-inscribed chest pulsing with golden light",
+        "mood": "Excited, Mysterious, Anticipation",
+        "time_of_day": "Day",
+        "lighting": "Golden light emanating from chest",
+        "importance": 5,
+        "source_text": "Arin znajduje wśród korzeni starożytnego drzewa zakopaną skrzynię z runami, która słabo pulsuje złotym światłem."
+      },
+      "valid_json": true,
+      "latency_s": 8.13,
+      "raw": " {\n  \"location\": \"Ancient tree roots with hidden chest\",\n  \"characters_present\": [\"Arin\"],\n  \"action\": \"Discovers a rune-inscribed chest pulsing with golden light\",\n  \"mood\": \"Excited, Mysterious, Anticipation\",\n  \"time_of_day\": \"Day\",\n  \"lighting\": \"Golden light emanating from chest\",\n  \"importance\": 5\n}"
+    },
+    "s05": {
+      "spec": {
+        "location": "Elderath Ruins, shrouded in mist",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Exploring ancient, moonlit ruins overgrown with ivy and moss",
+        "mood": "Mystical, eerie, awe-inspiring",
+        "time_of_day": "Night",
+        "lighting": "Moonlight filtering through the mist",
+        "importance": 3,
+        "source_text": "Ruiny Elderath wyłaniają się z mgły: pokruszone kolumny, porośnięte bluszczem łuki i mchem pokryte posągi elfów w świetle księżyca."
+      },
+      "valid_json": true,
+      "latency_s": 9.31,
+      "raw": " {\n  \"location\": \"Elderath Ruins, shrouded in mist\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Exploring ancient, moonlit ruins overgrown with ivy and moss\",\n  \"mood\": \"Mystical, eerie, awe-inspiring\",\n  \"time_of_day\": \"Night\",\n  \"lighting\": \"Moonlight filtering through the mist\",\n  \"importance\": 3\n}"
+    },
+    "s06": {
+      "spec": {
+        "location": "Black Stone Gate entrance to Ironhold city",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Passing through the Black Stone Gate, they are greeted by guards in silver armor on the city walls",
+        "mood": "Awe-inspiring, regal, tense",
+        "time_of_day": "Day",
+        "lighting": "Bright daylight with glints from silver armor",
+        "importance": 3,
+        "source_text": "Theron i Arin przechodzą przez bramę z czarnego kamienia do stolicy Ironhold. Na murach stoją strażnicy w srebrnych zbrojach."
+      },
+      "valid_json": true,
+      "latency_s": 9.12,
+      "raw": " {\n  \"location\": \"Black Stone Gate entrance to Ironhold city\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Passing through the Black Stone Gate, they are greeted by guards in silver armor on the city walls\",\n  \"mood\": \"Awe-inspiring, regal, tense\",\n  \"time_of_day\": \"Day\",\n  \"lighting\": \"Bright daylight with glints from silver armor\",\n  \"importance\": 3\n}"
+    },
+    "s07": {
+      "spec": {
+        "location": "Forest clearing with a large, bloodied tree",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Arin tends to Theron's wounded arm by a campfire",
+        "mood": "Somber, tense, healing",
+        "time_of_day": "Dusk",
+        "lighting": "Campfire light",
+        "importance": 5,
+        "source_text": "Ranny Theron opiera się o drzewo, ciężko dysząc. Jego zbroja jest poznaczona krwią, a Arin opatruje mu ramię przy ognisku."
+      },
+      "valid_json": true,
+      "latency_s": 7.86,
+      "raw": " {\n  \"location\": \"Forest clearing with a large, bloodied tree\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Arin tends to Theron's wounded arm by a campfire\",\n  \"mood\": \"Somber, tense, healing\",\n  \"time_of_day\": \"Dusk\",\n  \"lighting\": \"Campfire light\",\n  \"importance\": \"5\"\n}"
+    },
+    "s08": {
+      "spec": {
+        "location": "Smoky tavern around a dark table",
+        "characters_present": [
+          "Arin"
+        ],
+        "action": "Whispering in secret",
+        "mood": "Tense",
+        "time_of_day": "Night",
+        "lighting": "Torchlight",
+        "importance": 5,
+        "source_text": "W tawernie pełnej dymu Arin rozmawia szeptem z zakapturzonym członkiem Gildii Cieni przy ciemnym stole."
+      },
+      "valid_json": true,
+      "latency_s": 7.31,
+      "raw": " {\n  \"location\": \"Smoky tavern around a dark table\",\n  \"characters_present\": [\"Arin\", \"Captured Guild of Shadows member\"],\n  \"action\": \"Whispering in secret\",\n  \"mood\": \"Tense\",\n  \"time_of_day\": \"Night\",\n  \"lighting\": \"Torchlight\",\n  \"importance\": 5\n}"
+    },
+    "s09": {
+      "spec": {
+        "location": "Peak of the Dark Mountain at dawn",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Theron brandishes his sword, facing a giant, dark dragon circling the valley at dawn",
+        "mood": "Tense, ominous, anticipation",
+        "time_of_day": "Dawn",
+        "lighting": "Foggy daylight",
+        "importance": 5,
+        "source_text": "Na szczycie wzgórza Theron unosi miecz, patrząc na ogromnego, ciemnego smoka krążącego nad doliną o świcie."
+      },
+      "valid_json": true,
+      "latency_s": 8.66,
+      "raw": " {\n  \"location\": \"Peak of the Dark Mountain at dawn\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Theron brandishes his sword, facing a giant, dark dragon circling the valley at dawn\",\n  \"mood\": \"Tense, ominous, anticipation\",\n  \"time_of_day\": \"Dawn\",\n  \"lighting\": \"Foggy daylight\",\n  \"importance\": \"5\"\n}"
+    },
+    "s10": {
+      "spec": {
+        "location": "Grand Magician's Library with Floating Books",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Old magician points at glowing map",
+        "mood": "Curious, Mysterious, Anticipation",
+        "time_of_day": "Day",
+        "lighting": "Daylight with Glowing Map",
+        "importance": 5,
+        "source_text": "Kolegium Magów: Arin i Theron stoją w ogromnej bibliotece pełnej latających ksiąg, a stary mag w niebieskiej szacie wskazuje im świecącą mapę."
+      },
+      "valid_json": true,
+      "latency_s": 8.59,
+      "raw": " {\n  \"location\": \"Grand Magician's Library with Floating Books\",\n  \"characters_present\": [\"Arin\", \"Theron\", \"Old Blue-Robed Magician\"],\n  \"action\": \"Old magician points at glowing map\",\n  \"mood\": \"Curious, Mysterious, Anticipation\",\n  \"time_of_day\": \"Day\",\n  \"lighting\": \"Daylight with Glowing Map\",\n  \"importance\": 5\n}"
+    },
+    "s11": {
+      "spec": {
+        "location": "Rooftops of the city at night",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Arin escapes rooftops, pursued by guards with torches, while a tower burns",
+        "mood": "Tense, dangerous, urgent",
+        "time_of_day": "Night",
+        "lighting": "Torchlight, flickering shadows",
+        "importance": 5,
+        "source_text": "Arin ucieka dachami miasta nocą, ścigany przez strażników z kuszami, a za nim płonie wieża."
+      },
+      "valid_json": true,
+      "latency_s": 9.29,
+      "raw": " {\n  \"location\": \"Rooftops of the city at night\",\n  \"characters_present\": [\"Arin\", \"Theron\", \"Guards with spears\"],\n  \"action\": \"Arin escapes rooftops, pursued by guards with torches, while a tower burns\",\n  \"mood\": \"Tense, dangerous, urgent\",\n  \"time_of_day\": \"Night\",\n  \"lighting\": \"Torchlight, flickering shadows\",\n  \"importance\": \"5\"\n}"
+    },
+    "s12": {
+      "spec": {
+        "location": "Bloody battlefield in the rain",
+        "characters_present": [
+          "Arin",
+          "Theron"
+        ],
+        "action": "Theron kneels over fallen comrade, head bowed, sword in the ground",
+        "mood": "Sad, somber, reflective",
+        "time_of_day": "Rain",
+        "lighting": "Dim, rain-soaked",
+        "importance": 5,
+        "source_text": "Theron klęczy nad ciałem poległego towarzysza na polu bitwy, w deszczu, z pochyloną głową i mieczem wbitym w ziemię."
+      },
+      "valid_json": true,
+      "latency_s": 8.4,
+      "raw": " {\n  \"location\": \"Bloody battlefield in the rain\",\n  \"characters_present\": [\"Arin\", \"Theron\"],\n  \"action\": \"Theron kneels over fallen comrade, head bowed, sword in the ground\",\n  \"mood\": \"Sad, somber, reflective\",\n  \"time_of_day\": \"Rain\",\n  \"lighting\": \"Dim, rain-soaked\",\n  \"importance\": \"5\"\n}"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "s01",
+    "text_pl": "Dwaj śmiałkowie stoją przed wejściem do Lasu Szeptów. Z gęstej mgły dobiegają ciche szepty, a między czarnymi drzewami migoczą bladoniebieskie światła.",
+    "reference_en": "two adventurers stand at the edge of a dark misty forest with glowing blue lights between black trees",
+    "characters": ["Arin", "Theron"]
+  },
+  {
+    "id": "s02",
+    "text_pl": "Arin zakrada się między drzewa, ukryty w płaszczu z kapturem, i nasłuchuje odgłosów z głębi lasu.",
+    "reference_en": "a hooded thief sneaks between dark trees in a misty forest at night",
+    "characters": ["Arin"]
+  },
+  {
+    "id": "s03",
+    "text_pl": "Theron wyciąga miecz i staje do walki z trzema goblinami wyskakującymi z krzaków. Pochodnie rzucają drgające cienie.",
+    "reference_en": "a armored warrior with a sword fights three goblins in a dark forest lit by torches",
+    "characters": ["Theron"]
+  },
+  {
+    "id": "s04",
+    "text_pl": "Arin znajduje wśród korzeni starożytnego drzewa zakopaną skrzynię z runami, która słabo pulsuje złotym światłem.",
+    "reference_en": "a thief kneels in front of an ancient chest with glowing golden runes buried among tree roots",
+    "characters": ["Arin"]
+  },
+  {
+    "id": "s05",
+    "text_pl": "Ruiny Elderath wyłaniają się z mgły: pokruszone kolumny, porośnięte bluszczem łuki i mchem pokryte posągi elfów w świetle księżyca.",
+    "reference_en": "ancient elven ruins with crumbling columns, ivy covered arches and mossy statues under moonlight",
+    "characters": []
+  },
+  {
+    "id": "s06",
+    "text_pl": "Theron i Arin przechodzą przez bramę z czarnego kamienia do stolicy Ironhold. Na murach stoją strażnicy w srebrnych zbrojach.",
+    "reference_en": "two adventurers walk through a black stone city gate while guards in silver armor stand on the walls",
+    "characters": ["Arin", "Theron"]
+  },
+  {
+    "id": "s07",
+    "text_pl": "Ranny Theron opiera się o drzewo, ciężko dysząc. Jego zbroja jest poznaczona krwią, a Arin opatruje mu ramię przy ognisku.",
+    "reference_en": "a wounded armored warrior leans on a tree while a hooded thief bandages his arm beside a campfire at night",
+    "characters": ["Arin", "Theron"]
+  },
+  {
+    "id": "s08",
+    "text_pl": "W tawernie pełnej dymu Arin rozmawia szeptem z zakapturzonym członkiem Gildii Cieni przy ciemnym stole.",
+    "reference_en": "a thief whispers with a hooded stranger at a dark table in a smoky medieval tavern",
+    "characters": ["Arin"]
+  },
+  {
+    "id": "s09",
+    "text_pl": "Na szczycie wzgórza Theron unosi miecz, patrząc na ogromnego, ciemnego smoka krążącego nad doliną o świcie.",
+    "reference_en": "a warrior on a hilltop raises a sword and looks at a huge dark dragon flying over a valley at dawn",
+    "characters": ["Theron"]
+  },
+  {
+    "id": "s10",
+    "text_pl": "Kolegium Magów: Arin i Theron stoją w ogromnej bibliotece pełnej latających ksiąg, a stary mag w niebieskiej szacie wskazuje im świecącą mapę.",
+    "reference_en": "two adventurers stand in a huge library with floating books while an old wizard in a blue robe points at a glowing map",
+    "characters": ["Arin", "Theron"]
+  },
+  {
+    "id": "s11",
+    "text_pl": "Arin ucieka dachami miasta nocą, ścigany przez strażników z kuszami, a za nim płonie wieża.",
+    "reference_en": "a hooded thief runs across medieval rooftops at night chased by crossbow guards while a tower burns behind",
+    "characters": ["Arin"]
+  },
+  {
+    "id": "s12",
+    "text_pl": "Theron klęczy nad ciałem poległego towarzysza na polu bitwy, w deszczu, z pochyloną głową i mieczem wbitym w ziemię.",
+    "reference_en": "a knight kneels in the rain on a battlefield over a fallen comrade with a sword stuck in the ground",
+    "characters": ["Theron"]
+  }
+]

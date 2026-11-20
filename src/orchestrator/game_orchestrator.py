@@ -6,6 +6,7 @@ from src.rags.reranker import Reranker
 from src.agents.game_master_agent import GameMasterAgent
 from src.agents.player_agent import PlayerAgent
 from src.game_state.game_state import GameState, GameVibe, ConversationMode, PlayerState
+from src.image_gen import ImageGenConfig, IllustrationPipeline
 
 
 class GameOrchestrator:
@@ -18,7 +19,8 @@ class GameOrchestrator:
     - Wspólną szynę komunikacyjną między uczestnikami.
     """
 
-    def __init__(self, llm, embed_model, vibe: str = "zrównoważona", scenario: str = "", num_players: int = 2):
+    def __init__(self, llm, embed_model, vibe: str = "zrównoważona", scenario: str = "", num_players: int = 2,
+                 image_config: ImageGenConfig | None = None):
         self.llm = llm
         self.lore_rag = LoreRAG(llm=llm, embed_model=embed_model)
         self.npc_rag = NpcRAG(llm=llm, embed_model=embed_model)
@@ -40,6 +42,11 @@ class GameOrchestrator:
         
         # Indeks aktywnego gracza (dla TURN_BASED)
         self.active_player_index = 0
+
+        # MODUŁ 6: Ilustracje (modele dyfuzyjne) – opcjonalne
+        self.illustrator: IllustrationPipeline | None = (
+            IllustrationPipeline(llm, image_config) if image_config and image_config.enabled else None
+        )
 
     # ------------------------------------------------------------------
     # MODUŁ 1: Inicjalizacja graczy AI
@@ -171,8 +178,23 @@ class GameOrchestrator:
     # ------------------------------------------------------------------
     
     def broadcast_message(self, message: dict):
-        """Dodaje wiadomość do wspólnej szyny komunikacyjnej."""
+        """Dodaje wiadomość do wspólnej szyny komunikacyjnej i (opcjonalnie) zleca ilustrację sceny."""
         self.message_history.append(message)
+        self._maybe_illustrate(message)
+
+    def _maybe_illustrate(self, message: dict) -> None:
+        if self.illustrator is None or message.get("type") != "narration":
+            return
+        events = [f"{m['speaker']}: {m['content']}" for m in self.message_history[-4:]]
+        try:
+            lore_context = self.lore_rag.query(message["content"][:300])
+        except Exception:
+            lore_context = ""
+        self.illustrator.on_event(message, self.game_state, events, lore_context)
+
+    def finish_illustrations(self):
+        """Kończy sesję ilustracji (render zaległych scen, galeria HTML). Zwraca ścieżkę galerii lub None."""
+        return self.illustrator.close() if self.illustrator else None
     
     def get_visible_history(self, player_name: str) -> str:
         """Zwraca historię wiadomości widoczną dla gracza."""
@@ -269,13 +291,20 @@ class GameOrchestrator:
             # GM przetwarza akcję
             result = self.process_player_action(action, player_state.name)
             print(f"GM: {result}\n")
-            
-            # Broadcast
+
+            # Broadcast: najpierw akcja gracza, potem narracja GM (to ona jest ilustrowana)
             self.broadcast_message({
                 "turn": self.game_state.current_turn,
                 "speaker": player_state.name,
                 "type": "action",
                 "content": action,
+                "visible_to": ["all"]
+            })
+            self.broadcast_message({
+                "turn": self.game_state.current_turn,
+                "speaker": "GM",
+                "type": "narration",
+                "content": result,
                 "visible_to": ["all"]
             })
         

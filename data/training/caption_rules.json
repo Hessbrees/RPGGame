@@ -1,0 +1,10 @@
+[
+  {"match": "dwarf-heroes", "caption": "portrait of a dwarf hero, realistic fantasy character art"},
+  {"match": "elf-heroes", "caption": "portrait of an elf hero, realistic fantasy character art"},
+  {"match": "human-heroes", "caption": "portrait of a human hero, realistic fantasy character art"},
+  {"match": "orc-heroes", "caption": "portrait of an orc warrior, realistic fantasy character art"},
+  {"match": "goblins", "caption": "portrait of a goblin enemy, realistic fantasy creature art"},
+  {"match": "cavern", "caption": "a dark underground cavern, fantasy environment concept art"},
+  {"match": "ruins", "caption": "ancient overgrown ruins, fantasy environment concept art"},
+  {"match": "icon-", "caption": "a fantasy game item icon"}
+]
