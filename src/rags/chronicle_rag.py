@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 from pathlib import Path
 from .base_rag import BaseRAG
 
@@ -15,6 +16,31 @@ class ChronicleRAG(BaseRAG):
     COLLECTION_NAME = "chronicle"
     DATA_DIR = "./data/chronicle"
     JOURNAL_FILE = "./data/chronicle/journal.json"
+
+    @classmethod
+    def start_session(cls) -> Path | None:
+        """Archiwizuje dziennik poprzedniej sesji (data/chronicle/archive/) i zaczyna z pustym. Zwraca ścieżkę archiwum."""
+        journal_path = Path(cls.JOURNAL_FILE)
+        if not journal_path.exists():
+            return None
+        archived = None
+        try:
+            has_entries = bool(json.loads(journal_path.read_text(encoding="utf-8")))
+        except json.JSONDecodeError:
+            has_entries = True  # uszkodzony plik też archiwizujemy, nie kasujemy
+        if has_entries:
+            archive_dir = journal_path.parent / "archive"
+            archive_dir.mkdir(parents=True, exist_ok=True)
+            archived = archive_dir / f"journal_{datetime.now():%Y%m%d_%H%M%S}.json"
+            journal_path.replace(archived)
+        journal_path.write_text("[]", encoding="utf-8")
+        return archived
+
+    def entry_count(self) -> int:
+        journal_path = Path(self.JOURNAL_FILE)
+        if not journal_path.exists():
+            return 0
+        return len(json.loads(journal_path.read_text(encoding="utf-8")))
 
     def add_entry(self, entry: str) -> None:
         """Zapisuje nowe zdarzenie do dziennika rozgrywki."""

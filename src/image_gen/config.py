@@ -49,6 +49,8 @@ class ImageGenConfig:
     unload_ollama: bool = field(default_factory=lambda: _env_bool("IMAGE_UNLOAD_OLLAMA", True))
     ollama_base_url: str = field(default_factory=lambda: os.getenv("OLLAMA_BASE_URL", "http://localhost:11434"))
     ollama_model: str = field(default_factory=lambda: os.getenv("OLLAMA_MODEL", "llama3"))
+    # Dodatkowe modele Ollama (np. osobny model GM/graczy), które też trzeba wyładować przed renderowaniem.
+    ollama_extra_models: list[str] = field(default_factory=list)
 
     @property
     def enabled(self) -> bool:

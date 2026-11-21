@@ -1,3 +1,5 @@
+from src.game_state.state_updater import StateUpdate, parse_state_updates, strip_state_dump
+
 GAME_MASTER_SYSTEM_PROMPT = """Jesteś bezlitosnym Mistrzem Gry. Twoim celem nie jest pomaganie graczowi, \
 lecz sprawiedliwe, ale surowe egzekwowanie zasad świata. NPC są egoistyczni, świat jest niebezpieczny. \
 Jeśli gracz popełni błąd, pozwól mu ponieść surowe konsekwencje, wliczając w to śmierć postaci.
@@ -5,6 +7,23 @@ NPC nie są Twoimi przyjaciółmi. Są przeszkodami. Walczą inteligentnie, ucie
 i kłamią, jeśli to im pomoże.
 
 ZAWSZE ODPOWIADAJ WYŁĄCZNIE PO POLSKU. Nie używaj języka angielskiego."""
+
+ARBITER_PROMPT = """Jesteś arbitrem gry RPG. Na podstawie opisu zdarzenia ustal jego skutki dla KAŻDEJ z postaci graczy.
+
+Postacie graczy:
+{players}
+
+Opis zdarzenia:
+{narration}
+
+Odpowiedz WYŁĄCZNIE jednym obiektem JSON, w którym kluczem jest imię postaci, a wartością obiekt z polami:
+- "hp_change": liczba całkowita (ujemna = obrażenia, dodatnia = leczenie)
+- "incapacitated": true tylko, gdy opis wprost mówi, że postać straciła przytomność lub zginęła, w przeciwnym razie false
+- "items_gained": lista przedmiotów zdobytych przez postać
+- "items_lost": lista przedmiotów straconych lub zużytych
+ZASADA: hp_change różne od 0 ustawiaj tylko wtedy, gdy opis wprost podaje, że dana postać otrzymała obrażenia lub została uleczona. Groźba, zbliżający się wróg lub ostrzeżenie to hp_change = 0.
+
+JSON:"""
 
 
 class GameMasterAgent:
@@ -43,16 +62,45 @@ class GameMasterAgent:
         )
         return str(self.llm.complete(prompt))
 
-    def react_to_player_action(self, action: str, game_state: str) -> str:
+    def react_to_player_action(
+        self,
+        action: str,
+        game_state: str,
+        player_name: str = "",
+        persona: dict | None = None,
+        rules: str = "",
+    ) -> str:
         """Reaguje na akcję gracza i dostosowuje fabułę."""
+        who = ""
+        if player_name:
+            char_class = (persona or {}).get("class", "")
+            who = (
+                f"Akcję wykonuje gracz: {player_name}{f' ({char_class})' if char_class else ''}. "
+                "Opisuj konsekwencje wyłącznie dla tej postaci i zwracaj się do niej po imieniu; "
+                "pozostali gracze to odrębne postacie.\n\n"
+            )
+        rules_block = f"Zasady gry (z podręcznika): {rules}\n\n" if rules else ""
         prompt = (
             f"{self.system_prompt}\n\n"
-            f"Stan gry: {game_state}\n\n"
+            f"Stan gry (prowadzony przez system, jest wiążący): {game_state}\n\n"
+            f"{rules_block}"
+            f"{who}"
             f"Akcja gracza: {action}\n\n"
-            "Zareaguj na tę akcję jako Mistrz Gry. Opisz konsekwencje.\n"
+            "Zareaguj na tę akcję jako Mistrz Gry. Opisz konsekwencje. "
+            "Nie wypisuj stanu gry, słowników w nawiasach klamrowych ani liczby punktów zdrowia graczy - stanem zarządza system.\n"
             "ODPOWIEDZ PO POLSKU."
         )
-        return str(self.llm.complete(prompt))
+        return strip_state_dump(str(self.llm.complete(prompt)))
+
+    def extract_state_updates(self, narration: str, players: list) -> dict[str, StateUpdate]:
+        """Ustala skutki zdarzenia (HP, przedmioty) dla wszystkich aktywnych graczy na podstawie narracji GM."""
+        if not players:
+            return {}
+        listing = "\n".join(
+            f"- {p.name}: HP {p.hp}/100, ekwipunek: {', '.join(p.inventory) or 'pusty'}" for p in players
+        )
+        prompt = ARBITER_PROMPT.format(players=listing, narration=narration[:1500])
+        return parse_state_updates(str(self.llm.complete(prompt)), [p.name for p in players])
 
     def play_npc(self, npc_name: str, npc_description: str, player_input: str) -> str:
         """Odgrywa postać NPC w odpowiedzi na gracza."""

@@ -92,7 +92,8 @@ class IllustrationPipeline:
     # ------------------------------------------------------------------
     def _render(self, job: RenderJob) -> Path:
         if self.config.unload_ollama:
-            release_ollama(self.config.ollama_base_url, self.config.ollama_model)
+            for model in dict.fromkeys([self.config.ollama_model, *self.config.ollama_extra_models]):
+                release_ollama(self.config.ollama_base_url, model)
 
         image = self.generator.generate(job.prompt, job.negative_prompt, seed=job.seed)
         record = ImageRecord(

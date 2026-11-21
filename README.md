@@ -41,7 +41,8 @@ src/
 │   ├── game_master_agent.py
 │   └── player_agent.py
 ├── game_state/
-│   └── game_state.py
+│   ├── game_state.py
+│   └── state_updater.py      ← parser odpowiedzi arbitra i stosowanie zmian HP/ekwipunku, filtr narracji
 └── image_gen/
     ├── config.py             ← konfiguracja (zmienne IMAGE_*)
     ├── scene_director.py
@@ -57,12 +58,14 @@ scripts/
 ├── train_lora.py             ← trening LoRA stylu (własna pętla, walidacja, CLIP Score)
 └── run_experiments.py        ← eksperyment porównawczy (LLM × kontekst × LoRA)
 
+tests/                      ← testy jednostkowe z atrapą LLM (pytest, bez Ollamy)
+
 data/
 ├── lore/               ← opisy świata, frakcje, klimat polityczny
 ├── npcs/               ← opisy postaci NPC
 ├── rules/              ← podręcznik zasad (dla Sędziego RAG)
 ├── scenarios/          ← scenariusze, punkty fabularne, zakończenia
-├── chronicle/          ← dziennik fabuły (journal.json)
+├── chronicle/          ← dziennik bieżącej sesji (journal.json); archiwum poprzednich sesji w archive/
 ├── random_tables/      ← tabele losowych wydarzeń, nagród, imion NPC
 ├── player_preferences/ ← profile vibe rozgrywki
 ├── training/           ← zbiór treningowy LoRA (metadata.jsonl, podział train/val)
@@ -107,13 +110,24 @@ python main.py --illustrate deferred --lora outputs/lora/style_r16/best --turns 
 | `--illustrate off\|inline\|deferred` | `inline` – obraz zaraz po zdarzeniu; `deferred` – kolejka renderowana po sesji (oszczędza VRAM) |
 | `--lora ŚCIEŻKA` | wagi LoRA (można podać wielokrotnie) |
 | `--turns N` | maksymalna liczba tur (domyślnie 10) |
+| `--gm-model MODEL` | osobny model Ollama dla Mistrza Gry (domyślnie `OLLAMA_MODEL`) |
+| `--player-model MODEL...` | model dla graczy: jeden dla wszystkich albo dwa (Arin, Theron) |
+| `--keep-journal` | nie archiwizuj dziennika poprzedniej sesji, dopisuj do niego |
 | `--open-gallery` | po sesji otwiera galerię HTML w przeglądarce |
+
+Przykład z różnymi modelami: `python main.py --gm-model qwen2.5:7b --player-model llama3 mistral`. Ollama sama wymienia modele w pamięci GPU, więc przy 6 GB VRAM każda zmiana modelu w trakcie tury chwilę trwa.
+
+### Przebieg rozgrywki
+
+- Tryb swobodny: gracze rozmawiają, a GM kończy rozmowę, gdy padą słowa o akcji (heurystyka) lub rozmowa się przeciąga. Tryb turowy: każdy gracz wybiera akcję, a po 3 rundach GM wraca do rozmowy swobodnej.
+- Po każdej akcji GM opisuje skutki (zna imię i klasę gracza, zasady z Sędziego RAG i stan gry), a arbiter (drugie wywołanie LLM) ustala zmiany dla wszystkich graczy. HP, ekwipunek i status `active` są aktualizowane w kodzie (`[Stan] Arin: HP 100 -> 80` w konsoli i w dzienniku); gra kończy się porażką, gdy wszyscy gracze tracą przytomność.
+- Zmiany stanu wynikają z oceny LLM, więc ich jakość zależy od modelu. Rzuty k20 są tylko opisywane w narracji, a nie liczone w kodzie.
 
 Obrazy trafiają do `outputs/images/` (PNG, `index.jsonl` z promptami i seedami, `gallery.html`).
 
 ## Style rozgrywki (vibe)
 
-Przy inicjalizacji można wybrać styl rozgrywki:
+Styl rozgrywki jest parametrem `vibe` w `GameOrchestrator` (w `main.py` ustawiony na `zrównoważona`; wyboru w CLI jeszcze nie ma):
 
 | Vibe | Opis |
 |------|------|
@@ -131,7 +145,16 @@ Umieść pliki `.txt` lub `.md` w odpowiednich folderach:
 - `data/scenarios/` – scenariusze i moduły przygody
 - `data/random_tables/` – tabele losowe, nagrody, imiona NPC
 
-ChromaDB automatycznie zaindeksuje dokumenty przy pierwszym uruchomieniu. Dziennik fabuły (`data/chronicle/journal.json`) jest aktualizowany automatycznie podczas rozgrywki i cyklicznie kompresowany przez ChronicleRAG.
+Indeksy ChromaDB budowane są od zera tylko wtedy, gdy zmieni się zawartość plików w folderze lub model embeddings (odcisk w `chroma_db/rag_fingerprints.json`), więc restart nie dubluje wpisów. Dziennik fabuły (`data/chronicle/journal.json`) zaczyna się pusty w każdej sesji (poprzedni trafia do `data/chronicle/archive/`; `--keep-journal` to wyłącza), jest uzupełniany podczas rozgrywki i kompresowany przez ChronicleRAG po przekroczeniu 40 wpisów.
+
+## Testy
+
+```bash
+pip install pytest
+pytest tests
+```
+
+Testy (35) używają atrapy LLM i fałszywych embeddingów, więc nie wymagają Ollamy ani GPU: indeksowanie RAG bez duplikatów, parser i stosowanie zmian stanu, orkiestrator (imię gracza w prompcie GM, HP, koniec gry, przełączanie trybów, dziennik, osobne modele) oraz `image_gen` (parser sceny, prompt, statystyki). Skrypty `test_core_functionality.py` i `test_polish.py` w katalogu głównym to stare testy ręczne wymagające Ollamy i nie są częścią zestawu.
 
 ## Generowanie ilustracji
 

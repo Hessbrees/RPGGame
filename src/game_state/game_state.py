@@ -65,6 +65,15 @@ class GameState:
         """Zapisuje informację niedostępną dla graczy."""
         self.hidden_info[key] = value
 
+    def describe_state(self) -> str:
+        """Zwięzły opis stanu dla promptów (autorytatywny: liczony w kodzie, nie przez LLM)."""
+        players = "; ".join(
+            f"{p.name}: HP {p.hp}/100, {'aktywny' if p.active else 'nieprzytomny'}, "
+            f"ekwipunek: {', '.join(p.inventory) or 'pusty'}"
+            for p in self.players
+        )
+        return f"Tura {self.current_turn}; gracze: {players}"
+
     def get_public_state(self) -> dict:
         """Zwraca stan gry widoczny dla graczy (bez ukrytych informacji)."""
         return {
