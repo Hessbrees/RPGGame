@@ -1,6 +1,9 @@
 from types import SimpleNamespace
 
+from PIL import Image
+
 from src.image_gen.evaluation import _as_tensor, paired_difference, summarize
+from src.image_gen.gallery import Gallery, ImageRecord
 from src.image_gen.prompt_builder import CLIP_MAX_TOKENS, PromptBuilder
 from src.image_gen.scene_director import SceneDirector, SceneSpec
 
@@ -59,6 +62,20 @@ def test_summarize_and_paired_difference():
     assert positive["significant"] and positive["mean"] > 0
     mixed = paired_difference([1.0, 2.0, 1.0, 2.0], [2.0, 1.0, 2.0, 1.0])
     assert not mixed["significant"]
+
+
+def test_gallery_html_is_self_contained(tmp_path):
+    gallery = Gallery(str(tmp_path))
+    record = ImageRecord(index=0, turn=1, prompt="a <knight>", negative_prompt="", seed=7, model_id="m",
+                         scene={"importance": 4, "source_text": "Arin łaźcą"})
+    gallery.save(Image.new("RGB", (8, 8), "red"), record)
+    page = gallery.build_html().read_text(encoding="utf-8")
+    assert "data:image/png;base64," in page and ".png'" not in page
+    assert "a &lt;knight&gt;" in page and "seed 7" in page
+
+
+def test_gallery_html_without_images_still_valid(tmp_path):
+    assert "Brak obrazów" in Gallery(str(tmp_path)).build_html().read_text(encoding="utf-8")
 
 
 def test_as_tensor_supports_both_transformers_outputs():

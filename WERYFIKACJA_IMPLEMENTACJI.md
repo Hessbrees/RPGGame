@@ -65,7 +65,7 @@ Legenda: ✅ działa i było sprawdzone w tej weryfikacji · 🟡 działa częś
 - [x] **ChromaDB bez duplikatów** (`BaseRAG`): odcisk zawartości plików i modelu embeddings w `chroma_db/rag_fingerprints.json`; indeks budowany od zera tylko przy zmianie danych; sprawdzone na prawdziwej bazie: każda kolekcja ma teraz 1 wpis i 1 unikalny tekst (wcześniej `lore`/`npcs`/`judge` 9/1, `chronicle` 79/42)
 - [x] **Dziennik sesji:** na starcie poprzedni `journal.json` trafia do `data/chronicle/archive/`; powyżej 40 wpisów Kronikarz go kompresuje; opcja `--keep-journal` zachowuje stary
 - [x] **Osobne modele:** `--gm-model` i `--player-model` (jeden dla wszystkich albo po jednym na gracza); modele Ollama spoza domyślnego są wyładowywane przed renderowaniem ilustracji
-- [x] **Testy jednostkowe** (`pytest tests`, 35 testów, bez Ollamy dzięki atrapie LLM): indeksowanie RAG, parser i stosowanie zmian stanu, orkiestrator (imię gracza, HP, koniec gry, przełączanie trybów, dziennik, osobne modele), `image_gen` (parser sceny, prompt, statystyki)
+- [x] **Testy jednostkowe** (`pytest tests`, 37 testów, bez Ollamy dzięki atrapie LLM): indeksowanie RAG, parser i stosowanie zmian stanu, orkiestrator (imię gracza, HP, koniec gry, przełączanie trybów, dziennik, osobne modele), `image_gen` (parser sceny, prompt, statystyki)
 
 ### MODUŁ 6: Ilustracje z przebiegu gry (nowy) ✅
 
@@ -180,7 +180,7 @@ Legenda: ✅ działa i było sprawdzone w tej weryfikacji · 🟡 działa częś
 | Dziennik (Kronikarz) | ✅ | sesje z archiwum, kompresja po >40 wpisach (tylko test jednostkowy) |
 | Ilustracje (pipeline, galeria) | ✅ | sprawdzone w trybie `deferred` |
 | Trening LoRA i eksperyment | ✅ | uruchomione, wyniki w `outputs/` i README |
-| Testy automatyczne | ✅ | 35 testów jednostkowych (`pytest tests`); stare skrypty testowe poza zestawem |
+| Testy automatyczne | ✅ | 37 testów jednostkowych (`pytest tests`); stare skrypty testowe poza zestawem |
 
 Pokrycie wymagań tezy jest szacowane jakościowo: warstwa konwersacyjna, RAG i stan postaci działają, a mechanika gry (walka w kodzie, NPC, scenariusze) nie. Poprzednie liczbowe szacunki (70-75%) i liczby linii kodu zostały usunięte jako nieaktualne.
 
@@ -217,7 +217,7 @@ Naprawy: 1 - imię i klasa gracza w prompcie GM; 2 - arbiter ustala HP/ekwipunek
 | 9 | Jakość tekstu `llama3`: powtórzenia fragmentów między graczami, błędy gramatyczne, GM dopisuje własne opcje i stan | w eksperymencie `qwen2.5:7b` najlepiej rozpoznawał postać w scenie; warto sprawdzić go w roli GM |
 | 10 | Dynamiczna trudność, NPC (`add_npc`/`play_npc`), `hidden_info` i wiadomości prywatne nie są używane | podłączyć albo usunąć martwy kod |
 | 11 | Brak wyboru scenariusza i vibe w CLI | `--vibe`, `--scenario` zamiast stałych w `main.py` i `start_adventure()` |
-| 12 | Testy `test_core_functionality.py` i `test_polish.py` to skrypty wymagające działającej Ollamy i LLM; funkcje z argumentem `orchestrator`/`llm` nie zadziałają pod `pytest` bez fixture; nie były uruchamiane | dodano 35 testów jednostkowych z atrapą LLM w `tests/` (✅); stare skrypty nadal poza zestawem (`pytest.ini` zbiera tylko `tests/`) |
+| 12 | Testy `test_core_functionality.py` i `test_polish.py` to skrypty wymagające działającej Ollamy i LLM; funkcje z argumentem `orchestrator`/`llm` nie zadziałają pod `pytest` bez fixture; nie były uruchamiane | dodano 37 testów jednostkowych z atrapą LLM w `tests/` (✅); stare skrypty nadal poza zestawem (`pytest.ini` zbiera tylko `tests/`) |
 
 #### Ilustracje - do poprawy
 

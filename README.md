@@ -123,7 +123,7 @@ Przykład z różnymi modelami: `python main.py --gm-model qwen2.5:7b --player-m
 - Po każdej akcji GM opisuje skutki (zna imię i klasę gracza, zasady z Sędziego RAG i stan gry), a arbiter (drugie wywołanie LLM) ustala zmiany dla wszystkich graczy. HP, ekwipunek i status `active` są aktualizowane w kodzie (`[Stan] Arin: HP 100 -> 80` w konsoli i w dzienniku); gra kończy się porażką, gdy wszyscy gracze tracą przytomność.
 - Zmiany stanu wynikają z oceny LLM, więc ich jakość zależy od modelu. Rzuty k20 są tylko opisywane w narracji, a nie liczone w kodzie.
 
-Obrazy trafiają do `outputs/images/` (PNG, `index.jsonl` z promptami i seedami, `gallery.html`).
+Obrazy trafiają do `outputs/images/` (PNG, `index.jsonl` z promptami i seedami, `gallery.html`). Galeria to samodzielny plik HTML z osadzonymi obrazami (działa po otwarciu z dowolnego miejsca, kliknięcie powiększa obraz, prompt i seed są pod zdjęciem). Odbudowa z istniejących obrazów: `python -c "from src.image_gen.gallery import Gallery; Gallery('outputs/images').build_html()"`.
 
 ## Style rozgrywki (vibe)
 
@@ -154,7 +154,7 @@ pip install pytest
 pytest tests
 ```
 
-Testy (35) używają atrapy LLM i fałszywych embeddingów, więc nie wymagają Ollamy ani GPU: indeksowanie RAG bez duplikatów, parser i stosowanie zmian stanu, orkiestrator (imię gracza w prompcie GM, HP, koniec gry, przełączanie trybów, dziennik, osobne modele) oraz `image_gen` (parser sceny, prompt, statystyki). Skrypty `test_core_functionality.py` i `test_polish.py` w katalogu głównym to stare testy ręczne wymagające Ollamy i nie są częścią zestawu.
+Testy (37) używają atrapy LLM i fałszywych embeddingów, więc nie wymagają Ollamy ani GPU: indeksowanie RAG bez duplikatów, parser i stosowanie zmian stanu, orkiestrator (imię gracza w prompcie GM, HP, koniec gry, przełączanie trybów, dziennik, osobne modele) oraz `image_gen` (parser sceny, prompt, statystyki, galeria HTML). Skrypty `test_core_functionality.py` i `test_polish.py` w katalogu głównym to stare testy ręczne wymagające Ollamy i nie są częścią zestawu.
 
 ## Generowanie ilustracji
 

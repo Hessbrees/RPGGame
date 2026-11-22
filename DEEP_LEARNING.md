@@ -9,7 +9,7 @@ Stan na 2026-11-22. Szczegóły techniczne i komendy: `README.md` (sekcja „Gen
 - **Zbiór treningowy:** 93 obrazy (82 train, 11 val) z opisami i tokenem `rpgstyle`; panoramy dzielone na kwadratowe wycinki, podział bez wycieku między wycinkami jednego obrazu.
 - **Eksperyment ilościowy** (`scripts/run_experiments.py`): 504 obrazy (14 warunków × 12 scen × 3 seedy). Porównuje model LLM piszący opis sceny (`llama3`, `qwen2.5:7b`, `mistral` i baseline bez LLM), kontekst (lore + karty postaci vs sam opis) oraz wariant obrazu (SD 1.5 vs SD 1.5 + LoRA).
 - **Metryki:** CLIP Score względem niezależnego opisu referencyjnego, wierność stylu (podobieństwo CLIP do zbioru treningowego), spójność postaci (DINOv2-I, CLIP-I), jakość specyfikacji sceny (poprawność JSON, zgodność postaci, opóźnienie); różnice z 95% przedziałami ufności z bootstrapu sparowanego po scenach.
-- **Testy:** 35 testów jednostkowych w `tests/` (w tym parser sceny, prompt i statystyki z `evaluation.py`).
+- **Testy:** 37 testów jednostkowych w `tests/` (w tym parser sceny, prompt, statystyki z `evaluation.py` i galeria HTML).
 
 ## Główne wyniki
 
@@ -34,7 +34,7 @@ Pełne tabele: `outputs/experiments/main/summary.md`.
 | Sceny do ewaluacji (12, z opisem referencyjnym) | `data/evaluation/scenes.json` |
 | Wagi LoRA | `outputs/lora/style_r16/best` (najniższy `val_loss`) i `final`; logi `train_log.csv`, `eval_log.csv` |
 | Wyniki eksperymentu | `outputs/experiments/main/`: `summary.md`, `summary.json`, `results.csv`, `consistency.csv`, `specs.json`, `prompts.json`, `comparison_*.png`, `images/` |
-| Obrazy z gry | `outputs/images/` (PNG, `index.jsonl`, `gallery.html`) |
+| Obrazy z gry | `outputs/images/` (PNG, `index.jsonl`, `gallery.html` jako samodzielny plik z osadzonymi obrazami) |
 | Testy | `tests/test_image_gen.py` (oraz pozostałe testy projektu) |
 
 ## Jak odtworzyć
